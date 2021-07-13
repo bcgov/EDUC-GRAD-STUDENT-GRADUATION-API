@@ -32,7 +32,7 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 @CrossOrigin
 @RestController
-@RequestMapping(EducGradStudentGraduationApiConstants.GRAD_PROGRAM_MANAGEMENT_API_ROOT_MAPPING)
+@RequestMapping(EducGradStudentGraduationApiConstants.GRAD_STUDENT_GRADUATION_LGSC_CONTROLLER_ROOT_MAPPING)
 @EnableResourceServer
 @OpenAPIDefinition(info = @Info(title = "API for Letter Grade and Special Case Data.", description = "This API contains endpoints for Letter Grade and Special Case data.", version = "1"), security = {@SecurityRequirement(name = "OAUTH2", scopes = {"READ_GRAD_SPECIAL_CASE_DATA","READ_GRAD_LETTER_GRADE_DATA"})})
 public class LettergradeSpecialcaseController {
