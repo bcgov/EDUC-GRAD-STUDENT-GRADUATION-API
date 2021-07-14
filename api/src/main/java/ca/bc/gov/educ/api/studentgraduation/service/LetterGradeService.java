@@ -15,7 +15,6 @@ import ca.bc.gov.educ.api.studentgraduation.model.dto.LetterGrade;
 import ca.bc.gov.educ.api.studentgraduation.model.entity.LetterGradeEntity;
 import ca.bc.gov.educ.api.studentgraduation.model.transformer.LetterGradeTransformer;
 import ca.bc.gov.educ.api.studentgraduation.repository.LetterGradeRepository;
-import ca.bc.gov.educ.api.studentgraduation.util.EducGradStudentGraduationApiConstants;
 import ca.bc.gov.educ.api.studentgraduation.util.GradValidation;
 
 @Service
@@ -29,9 +28,6 @@ public class LetterGradeService {
     
     @Autowired
 	GradValidation validation;
-    
-    @Autowired
-	EducGradStudentGraduationApiConstants educGradProgramManagementApiConstants;
        
     @Autowired
     RestTemplate restTemplate;

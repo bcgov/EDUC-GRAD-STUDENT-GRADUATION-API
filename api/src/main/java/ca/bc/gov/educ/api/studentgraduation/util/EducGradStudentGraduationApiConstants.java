@@ -21,6 +21,7 @@ public class EducGradStudentGraduationApiConstants {
     public static final String GRAD_STUDENT_GRADUATION_LGSC_CONTROLLER_ROOT_MAPPING = GRAD_STUDENT_GRADUATION_API_ROOT_MAPPING + "/lgSc";
     public static final String GRAD_STUDENT_GRADUATION_UNGRAD_REASON_CONTROLLER_ROOT_MAPPING = GRAD_STUDENT_GRADUATION_API_ROOT_MAPPING + "/ungrad";
     public static final String GRAD_STUDENT_GRADUATION_TRANSCRIPT_MESSAGE_CONTROLLER_ROOT_MAPPING = GRAD_STUDENT_GRADUATION_API_ROOT_MAPPING + "/transcript";
+    public static final String GRAD_STUDENT_GRADUATION_ALGO_CONTROLLER_ROOT_MAPPING = GRAD_STUDENT_GRADUATION_API_ROOT_MAPPING + "/algo";
     
     public static final String GET_ALL_SPECIAL_CASE_MAPPING = "/specialcase";
     public static final String GET_ALL_LETTER_GRADE_MAPPING = "/lettergrade";
@@ -37,7 +38,9 @@ public class EducGradStudentGraduationApiConstants {
     
     //Common
     public static final String GET_ALL_STUDENT_UNGRAD_MAPPING = "/studentungradreason/studentid/{studentID}";
-    
+    public static final String GET_ALL_ALGORITHM_RULES_MAPPING= "/algorithm-rules";    
+    public static final String GET_ALGORITHM_RULES_MAIN_PROGRAM = "/algorithm-rules/{programCode}";
+    public static final String GET_DATA_FOR_ALGORITHM_MAPPING = "/algorithmdata/{programCode}";
     
    
     //Default Attribute value constants
