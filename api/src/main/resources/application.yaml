@@ -46,7 +46,7 @@ logging:
         gov:
           educ:
             api:
-              program: ${APP_LOG_LEVEL}
+              studentgraduation: ${APP_LOG_LEVEL}
     org:
       springframework:
         web: ${SPRING_WEB_LOG_LEVEL}
@@ -70,11 +70,3 @@ springdoc:
   swagger-ui:
     path: /api/v1/api-docs-ui.html
     operationsSorter: alpha
-
-#Endpoints
-endpoint: 
- code-api: 
-  program-type_by_code: 
-   url: https://educ-grad-code-api-77c02f-dev.apps.silver.devops.gov.bc.ca/api/v1/code/gradprogramtype/%s
-  requirement-type_by_code: 
-   url: https://educ-grad-code-api-77c02f-dev.apps.silver.devops.gov.bc.ca/api/v1/code/gradrequirementtype/%s

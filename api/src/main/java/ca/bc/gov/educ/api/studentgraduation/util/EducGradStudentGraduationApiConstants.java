@@ -53,10 +53,4 @@ public class EducGradStudentGraduationApiConstants {
     public static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd";
     
     public static final String TRAX_DATE_FORMAT = "yyyyMM";
-    
-    @Value("${endpoint.code-api.program-type_by_code.url}")
-    private String gradProgramTypeByCode;
-    
-    @Value("${endpoint.code-api.requirement-type_by_code.url}")
-    private String gradRequirementTypeByCode;
 }
