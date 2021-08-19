@@ -12,7 +12,8 @@ public class LetterGrade extends BaseModel {
 
 	private String grade; 
 	private String gpaMarkValue; 
-	private String passFlag; 
+	private String passFlag;
+	private String description;
 	
 	
 	@Override

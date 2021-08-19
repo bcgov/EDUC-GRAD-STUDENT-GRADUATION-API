@@ -26,4 +26,8 @@ public class LetterGradeEntity extends BaseEntity {
 	
 	@Column(name = "PASS_FLAG", nullable = true)
     private String passFlag;
+	
+	@Column(name = "DESCRIPTION", nullable = true)
+    private String description;	
+	
 }
