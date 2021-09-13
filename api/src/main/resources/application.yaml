@@ -11,7 +11,7 @@ spring:
     enabled: false
   datasource:
     hikari:
-      pool-name: grad-student-graduation-api-cp
+      pool-name: educ-grad-student-graduation-api-cp
       maximum-pool-size: ${MAXIMUM_POOL_SIZE}
       connection-timeout: ${CONNECTION_TIMEOUT}
       max-lifetime: ${MAX_LIFETIME}
@@ -29,7 +29,14 @@ spring:
   jackson:
     deserialization:
       fail-on-unknown-properties: false
-
+flyway:
+  enabled: ${ENABLE_FLYWAY}
+  baseline-on-migrate: false
+  table: FLYWAY_SCHEMA_HISTORY
+  url: ${CONNECTION_STRING}
+  user: ${USERNAME}
+  password: ${PASSWORD}
+  locations: classpath:db/migration
 #Logging properties
 logging:
   file:
