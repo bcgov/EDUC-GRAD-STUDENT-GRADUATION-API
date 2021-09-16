@@ -1,0 +1,16 @@
+INSERT INTO LETTER_GRADE (LETTER_GRADE,PASS_FLAG,GPA_MARK_VALUE,DESCRIPTION) VALUES ('W','N',0,'Withdrawn');
+INSERT INTO LETTER_GRADE (LETTER_GRADE,PASS_FLAG,GPA_MARK_VALUE,DESCRIPTION) VALUES ('WF','N',0,'Withdrawn.  Final letter grade for non-examinable only; not applicable to interim letter grades.');
+INSERT INTO LETTER_GRADE (LETTER_GRADE,PASS_FLAG,GPA_MARK_VALUE,DESCRIPTION) VALUES ('IP','N',0,'In Progress.  Final letter grade for non-examinable only; Interim letter grade for both examinable and non-examinable.');
+INSERT INTO LETTER_GRADE (LETTER_GRADE,PASS_FLAG,GPA_MARK_VALUE,DESCRIPTION) VALUES ('A','Y',4,'86% - 100%');
+INSERT INTO LETTER_GRADE (LETTER_GRADE,PASS_FLAG,GPA_MARK_VALUE,DESCRIPTION) VALUES ('B','Y',3,'73% - 85%');
+INSERT INTO LETTER_GRADE (LETTER_GRADE,PASS_FLAG,GPA_MARK_VALUE,DESCRIPTION) VALUES ('C+','Y',2.5,'67% - 72%');
+INSERT INTO LETTER_GRADE (LETTER_GRADE,PASS_FLAG,GPA_MARK_VALUE,DESCRIPTION) VALUES ('C','Y',2,'60% - 66%');
+INSERT INTO LETTER_GRADE (LETTER_GRADE,PASS_FLAG,GPA_MARK_VALUE,DESCRIPTION) VALUES ('C-','Y',1,'50% - 59%');
+INSERT INTO LETTER_GRADE (LETTER_GRADE,PASS_FLAG,GPA_MARK_VALUE,DESCRIPTION) VALUES ('RM','Y',0,'Requirement Met.  A Final School Letter Grade of "RM" (Requirement Met) can only be supplied if the record is for the Graduation Transitions course (GT/GTF).');
+INSERT INTO LETTER_GRADE (LETTER_GRADE,PASS_FLAG,GPA_MARK_VALUE,DESCRIPTION) VALUES ('F','N',0,'0% - 49%');
+INSERT INTO LETTER_GRADE (LETTER_GRADE,PASS_FLAG,GPA_MARK_VALUE,DESCRIPTION) VALUES ('NM','N',0,'No Mark.  Final letter grade for non-examinable only; not applicable to interim letter grades.');
+INSERT INTO LETTER_GRADE (LETTER_GRADE,PASS_FLAG,GPA_MARK_VALUE,DESCRIPTION) VALUES ('WR','N',0,'Withdrawn.  Final letter grade for non-examinable only; not applicable to interim letter grades.');
+INSERT INTO LETTER_GRADE (LETTER_GRADE,PASS_FLAG,GPA_MARK_VALUE,DESCRIPTION) VALUES ('SG','Y',0,'Standing Granted');
+INSERT INTO LETTER_GRADE (LETTER_GRADE,PASS_FLAG,GPA_MARK_VALUE,DESCRIPTION) VALUES ('TS','Y',0,'Transfer Standing');
+INSERT INTO LETTER_GRADE (LETTER_GRADE,PASS_FLAG,GPA_MARK_VALUE,DESCRIPTION) VALUES ('I','N',0,'In Progress.  Final letter grade for non-examinable only; Interim letter grade for both examinable and non-examinable.');
+INSERT INTO LETTER_GRADE (LETTER_GRADE,PASS_FLAG,GPA_MARK_VALUE,DESCRIPTION) VALUES ('P','Y',1,'P was used instead of C- to indicate a passing letter grade prior to September 1994.  C- Only applies to 50-59% range from September 1994.  Before September 1994 (or through to August 1994), P for “pass” was used as the letter grade (not C-).');
