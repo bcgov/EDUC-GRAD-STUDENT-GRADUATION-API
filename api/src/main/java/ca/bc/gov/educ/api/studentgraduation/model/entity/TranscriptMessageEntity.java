@@ -45,5 +45,12 @@ public class TranscriptMessageEntity extends BaseEntity {
     private String programCadre;
 	
 	@Column(name = "CAREER_PROGRAM_MESSAGE", nullable = false)
-    private String careerProgramMessage;	
+    private String careerProgramMessage;
+
+	@Column(name = "GRAD_PROJECTED_MESSAGE", nullable = false)
+	private String gradProjectedMessage;
+
+	@Column(name = "HONOUR_PROJECTED_NOTE", nullable = false)
+	private String honourProjectedNote;
+
 }
