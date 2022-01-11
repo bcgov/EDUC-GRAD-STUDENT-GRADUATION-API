@@ -2,15 +2,15 @@
 
 [![img](https://img.shields.io/badge/Lifecycle-Experimental-339999)](https://github.com/bcgov/repomountie/blob/master/doc/lifecycle-badges.md) &nbsp;
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/bcgov/educ-grad-student-graduation-api/Build) &nbsp; 
-[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=educ-grad-student-graduation-api&metric=bugs)](https://sonarcloud.io/summary/new_code?id=educ-grad-student-graduation-api) &nbsp;
-[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=educ-grad-student-graduation-api&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=educ-grad-student-graduation-api) &nbsp;
-![Sonar Tests](https://img.shields.io/sonar/tests/educ-grad-student-graduation-api?compact_message&server=https%3A%2F%2Fsonarcloud.io) &nbsp;
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=educ-grad-student-graduation-api&metric=coverage)](https://sonarcloud.io/summary/new_code?id=educ-grad-student-graduation-api) &nbsp;
-[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=educ-grad-student-graduation-api&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=educ-grad-student-graduation-api) &nbsp;
-[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=educ-grad-student-graduation-api&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=educ-grad-student-graduation-api) &nbsp;
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=educ-grad-student-graduation-api&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=educ-grad-student-graduation-api) &nbsp;
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=educ-grad-student-graduation-api&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=educ-grad-student-graduation-api) &nbsp;
-[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=educ-grad-student-graduation-api&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=educ-grad-student-graduation-api) &nbsp;
-[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=educ-grad-student-graduation-api&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=educ-grad-student-graduation-api) &nbsp;
-[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=educ-grad-student-graduation-api&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=educ-grad-student-graduation-api) &nbsp;
-[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=educ-grad-student-graduation-api&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=educ-grad-student-graduation-api) &nbsp;
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=bcgov_EDUC-GRAD-STUDENT-GRADUATION-API&metric=bugs)](https://sonarcloud.io/summary/new_code?id=bcgov_EDUC-GRAD-STUDENT-GRADUATION-API) &nbsp;
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=bcgov_EDUC-GRAD-STUDENT-GRADUATION-API&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=bcgov_EDUC-GRAD-STUDENT-GRADUATION-API) &nbsp;
+![Sonar Tests](https://img.shields.io/sonar/tests/bcgov_EDUC-GRAD-STUDENT-GRADUATION-API?compact_message&server=https%3A%2F%2Fsonarcloud.io) &nbsp;
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=bcgov_EDUC-GRAD-STUDENT-GRADUATION-API&metric=coverage)](https://sonarcloud.io/summary/new_code?id=bcgov_EDUC-GRAD-STUDENT-GRADUATION-API) &nbsp;
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=bcgov_EDUC-GRAD-STUDENT-GRADUATION-API&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=bcgov_EDUC-GRAD-STUDENT-GRADUATION-API) &nbsp;
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=bcgov_EDUC-GRAD-STUDENT-GRADUATION-API&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=bcgov_EDUC-GRAD-STUDENT-GRADUATION-API) &nbsp;
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=bcgov_EDUC-GRAD-STUDENT-GRADUATION-API&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=bcgov_EDUC-GRAD-STUDENT-GRADUATION-API) &nbsp;
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=bcgov_EDUC-GRAD-STUDENT-GRADUATION-API&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=bcgov_EDUC-GRAD-STUDENT-GRADUATION-API) &nbsp;
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=bcgov_EDUC-GRAD-STUDENT-GRADUATION-API&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=bcgov_EDUC-GRAD-STUDENT-GRADUATION-API) &nbsp;
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=bcgov_EDUC-GRAD-STUDENT-GRADUATION-API&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=bcgov_EDUC-GRAD-STUDENT-GRADUATION-API) &nbsp;
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=bcgov_EDUC-GRAD-STUDENT-GRADUATION-API&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=bcgov_EDUC-GRAD-STUDENT-GRADUATION-API) &nbsp;
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=bcgov_EDUC-GRAD-STUDENT-GRADUATION-API&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=bcgov_EDUC-GRAD-STUDENT-GRADUATION-API) &nbsp;
