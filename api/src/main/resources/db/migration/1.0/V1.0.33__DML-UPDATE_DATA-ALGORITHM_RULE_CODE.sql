@@ -1,0 +1,1 @@
+UPDATE ALGORITHM_RULE_CODE SET LABEL='Excluded courses after Program Expiry Date rule', DESCRIPTION='Exclude any courses taken after the program has expired' WHERE ALGORITHM_RULE_CODE = 'EXCL_AFT_PRG_CUTOFF_RULE';
