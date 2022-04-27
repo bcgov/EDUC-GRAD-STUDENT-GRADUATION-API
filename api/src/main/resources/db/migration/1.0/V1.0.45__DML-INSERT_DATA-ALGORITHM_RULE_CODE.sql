@@ -1,0 +1,1 @@
+INSERT INTO ALGORITHM_RULE_CODE (ALGORITHM_RULE_CODE,LABEL,DESCRIPTION,ACTIVE_RULE,DISPLAY_ORDER,RULE_IMPL_NAME) VALUES ('REGTN_DUPLICATE_RULE','Registration Duplicate Rule','Checks if there are duplicate in progress courses','Y',480,'RegistrationsDuplicateRule');

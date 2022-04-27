@@ -13,6 +13,8 @@ import lombok.Setter;
 @Setter
 public class EducGradStudentGraduationApiConstants {
 
+    public static final String CORRELATION_ID = "correlationID";
+
     //API end-point Mapping constants
     public static final String API_ROOT_MAPPING = "";
     public static final String API_VERSION = "v1";
@@ -53,4 +55,8 @@ public class EducGradStudentGraduationApiConstants {
     public static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd";
     
     public static final String TRAX_DATE_FORMAT = "yyyyMM";
+
+    // Splunk LogHelper Enabled
+    @Value("${splunk.log-helper.enabled}")
+    private boolean splunkLogHelperEnabled;
 }

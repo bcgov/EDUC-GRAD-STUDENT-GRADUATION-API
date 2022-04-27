@@ -1,0 +1,1 @@
+INSERT INTO ALGORITHM_RULE_CODE (ALGORITHM_RULE_CODE,LABEL,DESCRIPTION,ACTIVE_RULE,DISPLAY_ORDER,RULE_IMPL_NAME) VALUES ('MAIN_PRGM_COMPLETE_RULE','Main Program Complete Rule','Checks if the main program of the student is complete or not','Y',470,'MainProgramCompleteRule');
