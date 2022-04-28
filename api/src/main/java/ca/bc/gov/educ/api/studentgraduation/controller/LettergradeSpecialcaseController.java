@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,7 +32,6 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 @CrossOrigin
 @RestController
 @RequestMapping(EducGradStudentGraduationApiConstants.GRAD_STUDENT_GRADUATION_LGSC_CONTROLLER_ROOT_MAPPING)
-@EnableResourceServer
 @OpenAPIDefinition(info = @Info(title = "API for Letter Grade and Special Case Data.", description = "This API contains endpoints for Letter Grade and Special Case data.", version = "1"), security = {@SecurityRequirement(name = "OAUTH2", scopes = {"READ_GRAD_SPECIAL_CASE_DATA","READ_GRAD_LETTER_GRADE_DATA"})})
 public class LettergradeSpecialcaseController {
 

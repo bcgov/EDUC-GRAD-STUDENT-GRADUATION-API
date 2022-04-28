@@ -9,8 +9,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 
 import ca.bc.gov.educ.api.studentgraduation.model.dto.LetterGrade;
 import ca.bc.gov.educ.api.studentgraduation.model.dto.SpecialCase;
@@ -41,12 +39,6 @@ public class LettergradeSpecialcaseControllerTest {
 	
 	@Mock
 	MessageHelper messagesHelper;
-	
-	@Mock
-	OAuth2AuthenticationDetails oAuth2AuthenticationDetails;
-	
-	@Mock
-	SecurityContextHolder securityContextHolder;
 	
 	@Test
 	public void testGetAllLetterGrade() {
