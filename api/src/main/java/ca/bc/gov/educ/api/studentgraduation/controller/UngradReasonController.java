@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,7 +40,6 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 @CrossOrigin
 @RestController
 @RequestMapping(EducGradStudentGraduationApiConstants.GRAD_STUDENT_GRADUATION_UNGRAD_REASON_CONTROLLER_ROOT_MAPPING)
-@EnableResourceServer
 @OpenAPIDefinition(info = @Info(title = "API for Student and General Ungrad Reasons.", description = "This API is for Student and General Ungrad Reasons endpoints.", version = "1"), security = {@SecurityRequirement(name = "OAUTH2", scopes = {"READ_GRAD_STUDENT_UNGRAD_REASONS_DATA"})})
 public class UngradReasonController {
 
