@@ -21,7 +21,7 @@ public class EducGradStudentGraduationApiConstants {
     public static final String GRAD_STUDENT_GRADUATION_API_ROOT_MAPPING = "/api/" + API_VERSION;
     
     public static final String GRAD_STUDENT_GRADUATION_LGSC_CONTROLLER_ROOT_MAPPING = GRAD_STUDENT_GRADUATION_API_ROOT_MAPPING + "/lgSc";
-    public static final String GRAD_STUDENT_GRADUATION_UNGRAD_REASON_CONTROLLER_ROOT_MAPPING = GRAD_STUDENT_GRADUATION_API_ROOT_MAPPING + "/ungrad";
+    public static final String GRAD_STUDENT_GRADUATION_UNGRAD_REASON_CONTROLLER_ROOT_MAPPING = GRAD_STUDENT_GRADUATION_API_ROOT_MAPPING + "/undocompletion";
     public static final String GRAD_STUDENT_GRADUATION_TRANSCRIPT_MESSAGE_CONTROLLER_ROOT_MAPPING = GRAD_STUDENT_GRADUATION_API_ROOT_MAPPING + "/transcript";
     public static final String GRAD_STUDENT_GRADUATION_ALGO_CONTROLLER_ROOT_MAPPING = GRAD_STUDENT_GRADUATION_API_ROOT_MAPPING + "/algo";
     
@@ -31,15 +31,15 @@ public class EducGradStudentGraduationApiConstants {
     public static final String GET_ALL_LETTER_GRADE__BY_LETTER_GRADE = "/lettergrade/{letterGrade}";
 
     //Code
-    public static final String GET_ALL_UNGRAD_MAPPING = "/ungradreason";
-    public static final String GET_ALL_UNGRAD_BY_CODE_MAPPING = "/ungradreason/{reasonCode}";
+    public static final String GET_ALL_UNGRAD_MAPPING = "/undocompletionreason";
+    public static final String GET_ALL_UNGRAD_BY_CODE_MAPPING = "/undocompletionreason/{reasonCode}";
     
     public static final String GET_ALL_GRAD_MESSAGING_MAPPING = "/gradmessages";
     public static final String GET_ALL_GRAD_MESSAGING_BY_PRG_CODE_AND_MESSAGE_TYPE_MAPPING = "/gradmessages/pgmCode/{pgmCode}/msgType/{msgType}";
     //
     
     //Common
-    public static final String GET_ALL_STUDENT_UNGRAD_MAPPING = "/studentungradreason/studentid/{studentID}";
+    public static final String GET_ALL_STUDENT_UNGRAD_MAPPING = "/studentundocompletionreason/studentid/{studentID}";
     public static final String GET_ALL_ALGORITHM_RULES_MAPPING= "/algorithm-rules";    
     public static final String GET_ALGORITHM_RULES_MAIN_PROGRAM = "/algorithm-rules/{programCode}";
     public static final String GET_DATA_FOR_ALGORITHM_MAPPING = "/algorithmdata/{programCode}";
