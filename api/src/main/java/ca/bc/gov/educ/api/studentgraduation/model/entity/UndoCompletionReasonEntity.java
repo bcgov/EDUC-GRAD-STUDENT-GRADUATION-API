@@ -11,11 +11,11 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Entity
-@Table(name = "UNGRAD_REASON_CODE")
-public class UngradReasonEntity extends BaseEntity {
+@Table(name = "UNDO_COMPLETION_REASON_CODE")
+public class UndoCompletionReasonEntity extends BaseEntity {
    
 	@Id
-	@Column(name = "UNGRAD_REASON_CODE", nullable = false)
+	@Column(name = "UNDO_COMPLETION_REASON_CODE", nullable = false)
     private String code; 
 	
 	@Column(name = "DESCRIPTION", nullable = true)

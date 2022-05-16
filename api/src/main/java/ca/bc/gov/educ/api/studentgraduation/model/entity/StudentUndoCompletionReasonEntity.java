@@ -16,8 +16,8 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Entity
-@Table(name = "STUDENT_UNGRAD_REASON")
-public class StudentUngradReasonEntity extends BaseEntity {
+@Table(name = "STUDENT_UNDO_COMPLETION_REASON")
+public class StudentUndoCompletionReasonEntity extends BaseEntity {
    	
 	@Id
 	@GeneratedValue(generator = "UUID")
@@ -25,16 +25,16 @@ public class StudentUngradReasonEntity extends BaseEntity {
 		name = "UUID",
 		strategy = "org.hibernate.id.UUIDGenerator"
 	)
-	@Column(name = "STUDENT_UNGRAD_REASON_ID", nullable = false)
-    private UUID studentUngradReasonID; 
+	@Column(name = "STUDENT_UNDO_COMPLETION_REASON_ID", nullable = false)
+    private UUID studentUndoCompletionReasonID;
 	
 	@Column(name = "GRADUATION_STUDENT_RECORD_ID", nullable = false)
     private UUID graduationStudentRecordID; 
 	
-	@Column(name = "UNGRAD_REASON_CODE", nullable = true)
-    private String ungradReasonCode;
+	@Column(name = "UNDO_COMPLETION_REASON_CODE", nullable = true)
+    private String undoCompletionReasonCode;
 	
-	@Column(name="UNGRAD_REASON_DESCRIPTION", nullable = true)
-	private String ungradReasonDescription;	
+	@Column(name="UNDO_COMPLETION_REASON_DESCRIPTION", nullable = true)
+	private String undoCompletionReasonDescription;
 	
 }
