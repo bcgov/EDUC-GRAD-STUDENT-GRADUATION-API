@@ -42,7 +42,6 @@ public class UndoCompletionReasonService {
     @Autowired
     RestTemplate restTemplate;
 
-	private static Logger logger = LoggerFactory.getLogger(UndoCompletionReasonService.class);
 	private static final String CREATED_BY="createdBy";
 	private static final String CREATED_TIMESTAMP="createdTimestamp";
 
@@ -87,7 +86,7 @@ public class UndoCompletionReasonService {
 	}
 
 	public int deleteUndoCompletionReason(@Valid String reasonCode) {
-		Boolean isPresent = studentUndoCompletionReasonService.getStudentUndoCompletionReasons(reasonCode);
+		boolean isPresent = studentUndoCompletionReasonService.getStudentUndoCompletionReasons(reasonCode);
 		if(isPresent) {
 			validation.addErrorAndStop(
 					String.format("This Ungrad Reason [%s] cannot be deleted as some students have this reason associated with them.",reasonCode));

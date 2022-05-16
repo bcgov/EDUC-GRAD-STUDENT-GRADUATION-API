@@ -21,6 +21,8 @@ import ca.bc.gov.educ.api.studentgraduation.repository.UndoCompletionReasonRepos
 import ca.bc.gov.educ.api.studentgraduation.util.GradBusinessRuleException;
 import ca.bc.gov.educ.api.studentgraduation.util.GradValidation;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -60,7 +62,8 @@ public class UndoCompletionReasonServiceTest {
 		obj.setUpdateDate(new Date(System.currentTimeMillis()));
 		gradUndoCompletionReasonList.add(obj);
 		Mockito.when(gradUndoCompletionReasonsRepository.findAll()).thenReturn(gradUndoCompletionReasonList);
-		ungradReasonService.getAllUndoCompletionReasonCodeList();
+		List<UndoCompletionReason> resList = ungradReasonService.getAllUndoCompletionReasonCodeList();
+		assertThat(resList).hasSize(2);
 	}
 	
 	@Test
@@ -83,14 +86,16 @@ public class UndoCompletionReasonServiceTest {
 		objEntity.setUpdateDate(new Date(System.currentTimeMillis()));
 		Optional<UndoCompletionReasonEntity> ent = Optional.of(objEntity);
 		Mockito.when(gradUndoCompletionReasonsRepository.findById(reasonCode)).thenReturn(ent);
-		ungradReasonService.getSpecificUndoCompletionReasonCode(reasonCode);
+		UndoCompletionReason res = ungradReasonService.getSpecificUndoCompletionReasonCode(reasonCode);
+		assertThat(res.getCode()).isEqualTo(obj.getCode());
 	}
 	
 	@Test
 	public void testGetSpecificUndoCompletionReasonCodeReturnsNull() {
 		String reasonCode = "DC";
 		Mockito.when(gradUndoCompletionReasonsRepository.findById(reasonCode)).thenReturn(Optional.empty());
-		ungradReasonService.getSpecificUndoCompletionReasonCode(reasonCode);
+		UndoCompletionReason res = ungradReasonService.getSpecificUndoCompletionReasonCode(reasonCode);
+		assertThat(res).isNull();
 	}
 	
 	
@@ -112,7 +117,9 @@ public class UndoCompletionReasonServiceTest {
 		objEntity.setUpdateDate(new Date(System.currentTimeMillis()));
 		Mockito.when(gradUndoCompletionReasonsRepository.findById(obj.getCode())).thenReturn(Optional.empty());
 		Mockito.when(gradUndoCompletionReasonsRepository.save(objEntity)).thenReturn(objEntity);
-		ungradReasonService.createUndoCompletionReason(obj);
+		UndoCompletionReason res = ungradReasonService.createUndoCompletionReason(obj);
+		assertThat(res).isNotNull();
+		assertThat(res.getCode()).isEqualTo(obj.getCode());
 		
 	}
 	
@@ -134,7 +141,8 @@ public class UndoCompletionReasonServiceTest {
 		objEntity.setUpdateDate(new Date(System.currentTimeMillis()));
 		Optional<UndoCompletionReasonEntity> ent = Optional.of(objEntity);
 		Mockito.when(gradUndoCompletionReasonsRepository.findById(obj.getCode())).thenReturn(ent);
-		ungradReasonService.createUndoCompletionReason(obj);
+		UndoCompletionReason res = ungradReasonService.createUndoCompletionReason(obj);
+		assertThat(res).isNotNull();
 		
 	}
 	
@@ -157,8 +165,8 @@ public class UndoCompletionReasonServiceTest {
 		Optional<UndoCompletionReasonEntity> ent = Optional.of(objEntity);
 		Mockito.when(gradUndoCompletionReasonsRepository.findById(obj.getCode())).thenReturn(ent);
 		Mockito.when(gradUndoCompletionReasonsRepository.save(objEntity)).thenReturn(objEntity);
-		ungradReasonService.updateUndoCompletionReason(obj);
-		
+		UndoCompletionReason res = ungradReasonService.updateUndoCompletionReason(obj);
+		assertThat(res).isNotNull();
 	}
 	
 	@Test(expected = GradBusinessRuleException.class)
@@ -178,7 +186,7 @@ public class UndoCompletionReasonServiceTest {
 		objEntity.setCreateDate(new Date(System.currentTimeMillis()));
 		objEntity.setUpdateDate(new Date(System.currentTimeMillis()));
 		Mockito.when(gradUndoCompletionReasonsRepository.findById(obj.getCode())).thenReturn(Optional.empty());
-		ungradReasonService.updateUndoCompletionReason(obj);
-		
+		UndoCompletionReason res = ungradReasonService.updateUndoCompletionReason(obj);
+		assertThat(res).isNotNull();
 	}	
 }
