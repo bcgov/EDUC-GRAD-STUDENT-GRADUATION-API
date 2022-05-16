@@ -1,25 +1,21 @@
 package ca.bc.gov.educ.api.studentgraduation.service;
 
-import java.util.List;
-import java.util.Optional;
-
-import javax.transaction.Transactional;
-import javax.validation.Valid;
-
+import ca.bc.gov.educ.api.studentgraduation.model.dto.UndoCompletionReason;
+import ca.bc.gov.educ.api.studentgraduation.model.entity.UndoCompletionReasonEntity;
+import ca.bc.gov.educ.api.studentgraduation.model.transformer.UndoCompletionReasonTransformer;
+import ca.bc.gov.educ.api.studentgraduation.repository.UndoCompletionReasonRepository;
+import ca.bc.gov.educ.api.studentgraduation.util.GradValidation;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import ca.bc.gov.educ.api.studentgraduation.model.dto.UndoCompletionReason;
-import ca.bc.gov.educ.api.studentgraduation.model.entity.UndoCompletionReasonEntity;
-import ca.bc.gov.educ.api.studentgraduation.model.transformer.UndoCompletionReasonTransformer;
-import ca.bc.gov.educ.api.studentgraduation.repository.UndoCompletionReasonRepository;
-import ca.bc.gov.educ.api.studentgraduation.util.GradValidation;
+import javax.transaction.Transactional;
+import javax.validation.Valid;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UndoCompletionReasonService {

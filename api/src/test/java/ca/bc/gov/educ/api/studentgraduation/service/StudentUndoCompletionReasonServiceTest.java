@@ -64,8 +64,7 @@ public class StudentUndoCompletionReasonServiceTest {
         when(gradStudentUndoCompletionReasonsRepository.findByGraduationStudentRecordID(studentID)).thenReturn(gradStudentUndoCompletionReasonsList);
         var result = studentUndoCompletionReasonService.getAllStudentUndoCompletionReasonsList(studentID);
 
-        assertThat(result).isNotNull();
-        assertThat(result).hasSize(2);
+        assertThat(result).isNotNull().hasSize(2);
         assertThat(result.get(0).getGraduationStudentRecordID()).isEqualTo(studentID);
         assertThat(result.get(0).getUndoCompletionReasonCode()).isEqualTo(gradUndoCompletionReason.getCode());
         assertThat(result.get(1).getGraduationStudentRecordID()).isEqualTo(studentID);
