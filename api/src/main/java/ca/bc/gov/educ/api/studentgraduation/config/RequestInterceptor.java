@@ -44,9 +44,9 @@ public class RequestInterceptor extends HandlerInterceptorAdapter {
 		// username
 		JwtAuthenticationToken authenticationToken = (JwtAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
 		Jwt jwt = (Jwt) authenticationToken.getCredentials();
-		String email = (String) jwt.getClaims().get("email");
-		if (email != null) {
-			ThreadLocalStateUtil.setCurrentUser(email);
+		String username = (String) jwt.getClaims().get("preferred_username");
+		if (username != null) {
+			ThreadLocalStateUtil.setCurrentUser(username);
 		}
 		validation.clear();
 		return true;
