@@ -6,7 +6,7 @@
 
     <groupId>ca.bc.gov.educ</groupId>
     <artifactId>educ-grad-student-graduation-api</artifactId>
-    <version>1.3.1</version>
+    <version>1.4.0</version>
     <name>educ-grad-student-graduation-api</name>
     <description>Ministry of Education GRAD STUDENT GRADUATION API</description>
 
@@ -14,7 +14,10 @@
     <properties>
         <sonar.language>java</sonar.language>
         <sonar.exclusions>
-            src/main/resources/**,src/main/java/ca/bc/gov/educ/api/studentgraduation/exception/**,src/main/java/ca/bc/gov/educ/api/studentgraduation/model/**
+            src/main/resources/**,
+            src/main/java/ca/bc/gov/educ/api/studentgraduation/exception/**,
+            src/main/java/ca/bc/gov/educ/api/studentgraduation/model/**
+            src/main/java/ca/bc/gov/educ/api/studentgraduation/util/**,
         </sonar.exclusions>
         <java.version>11</java.version>
         <maven.compiler.version>3.8.0</maven.compiler.version>

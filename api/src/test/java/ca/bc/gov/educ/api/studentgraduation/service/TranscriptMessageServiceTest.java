@@ -1,10 +1,10 @@
 package ca.bc.gov.educ.api.studentgraduation.service;
 
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
+import ca.bc.gov.educ.api.studentgraduation.model.dto.TranscriptMessage;
+import ca.bc.gov.educ.api.studentgraduation.model.entity.TranscriptMessageEntity;
+import ca.bc.gov.educ.api.studentgraduation.repository.TranscriptMessageRepository;
+import ca.bc.gov.educ.api.studentgraduation.repository.UndoCompletionReasonRepository;
+import ca.bc.gov.educ.api.studentgraduation.util.GradValidation;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -14,14 +14,10 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import ca.bc.gov.educ.api.studentgraduation.model.dto.TranscriptMessage;
-import ca.bc.gov.educ.api.studentgraduation.model.dto.UngradReason;
-import ca.bc.gov.educ.api.studentgraduation.model.entity.TranscriptMessageEntity;
-import ca.bc.gov.educ.api.studentgraduation.model.entity.UngradReasonEntity;
-import ca.bc.gov.educ.api.studentgraduation.repository.TranscriptMessageRepository;
-import ca.bc.gov.educ.api.studentgraduation.repository.UngradReasonRepository;
-import ca.bc.gov.educ.api.studentgraduation.util.GradBusinessRuleException;
-import ca.bc.gov.educ.api.studentgraduation.util.GradValidation;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 
 @RunWith(SpringRunner.class)
@@ -33,10 +29,10 @@ public class TranscriptMessageServiceTest {
 	private TranscriptMessageService transcriptMessageService;
 	
 	@Autowired
-	private UngradReasonService ungradReasonService;
+	private UndoCompletionReasonService undoCompletionReasonService;
 	
 	@MockBean
-	private UngradReasonRepository gradUngradReasonsRepository;
+	private UndoCompletionReasonRepository gradUndoCompletionReasonsRepository;
 
 	@MockBean
 	private TranscriptMessageRepository gradMessagingRepository;

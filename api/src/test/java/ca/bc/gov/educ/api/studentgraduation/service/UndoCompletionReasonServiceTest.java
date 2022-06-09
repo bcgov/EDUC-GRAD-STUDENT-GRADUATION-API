@@ -14,24 +14,26 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import ca.bc.gov.educ.api.studentgraduation.model.dto.UngradReason;
-import ca.bc.gov.educ.api.studentgraduation.model.entity.UngradReasonEntity;
+import ca.bc.gov.educ.api.studentgraduation.model.dto.UndoCompletionReason;
+import ca.bc.gov.educ.api.studentgraduation.model.entity.UndoCompletionReasonEntity;
 import ca.bc.gov.educ.api.studentgraduation.repository.TranscriptMessageRepository;
-import ca.bc.gov.educ.api.studentgraduation.repository.UngradReasonRepository;
+import ca.bc.gov.educ.api.studentgraduation.repository.UndoCompletionReasonRepository;
 import ca.bc.gov.educ.api.studentgraduation.util.GradBusinessRuleException;
 import ca.bc.gov.educ.api.studentgraduation.util.GradValidation;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ActiveProfiles("test")
-public class UngradReasonServiceTest {
+public class UndoCompletionReasonServiceTest {
 	
 	@Autowired
-	private UngradReasonService ungradReasonService;
+	private UndoCompletionReasonService ungradReasonService;
 	
 	@MockBean
-	private UngradReasonRepository gradUngradReasonsRepository;
+	private UndoCompletionReasonRepository gradUndoCompletionReasonsRepository;
 
 	@MockBean
 	private TranscriptMessageRepository gradMessagingRepository;
@@ -41,32 +43,33 @@ public class UngradReasonServiceTest {
 	
 	
 	@Test
-	public void testGetAllUngradReasonCodeList() {
-		List<UngradReasonEntity> gradUngradReasonList = new ArrayList<>();
-		UngradReasonEntity obj = new UngradReasonEntity();
+	public void testGetAllUndoCompletionReasonCodeList() {
+		List<UndoCompletionReasonEntity> gradUndoCompletionReasonList = new ArrayList<>();
+		UndoCompletionReasonEntity obj = new UndoCompletionReasonEntity();
 		obj.setCode("DC");
 		obj.setDescription("Data Correction by School");
 		obj.setCreateUser("GRADUATION");
 		obj.setUpdateUser("GRADUATION");
 		obj.setCreateDate(new Date(System.currentTimeMillis()));
 		obj.setUpdateDate(new Date(System.currentTimeMillis()));
-		gradUngradReasonList.add(obj);
-		obj = new UngradReasonEntity();
+		gradUndoCompletionReasonList.add(obj);
+		obj = new UndoCompletionReasonEntity();
 		obj.setCode("CC");
 		obj.setDescription("Courses not complete");
 		obj.setCreateUser("GRADUATION");
 		obj.setUpdateUser("GRADUATION");
 		obj.setCreateDate(new Date(System.currentTimeMillis()));
 		obj.setUpdateDate(new Date(System.currentTimeMillis()));
-		gradUngradReasonList.add(obj);
-		Mockito.when(gradUngradReasonsRepository.findAll()).thenReturn(gradUngradReasonList);
-		ungradReasonService.getAllUngradReasonCodeList();
+		gradUndoCompletionReasonList.add(obj);
+		Mockito.when(gradUndoCompletionReasonsRepository.findAll()).thenReturn(gradUndoCompletionReasonList);
+		List<UndoCompletionReason> resList = ungradReasonService.getAllUndoCompletionReasonCodeList();
+		assertThat(resList).hasSize(2);
 	}
 	
 	@Test
-	public void testGetSpecificUngradReasonCode() {
+	public void testGetSpecificUndoCompletionReasonCode() {
 		String reasonCode = "DC";
-		UngradReason obj = new UngradReason();
+		UndoCompletionReason obj = new UndoCompletionReason();
 		obj.setCode("DC");
 		obj.setDescription("Data Correction by School");
 		obj.setCreateUser("GRADUATION");
@@ -74,111 +77,116 @@ public class UngradReasonServiceTest {
 		obj.setCreateDate(new Date(System.currentTimeMillis()));
 		obj.setUpdateDate(new Date(System.currentTimeMillis()));
 		obj.toString();
-		UngradReasonEntity objEntity = new UngradReasonEntity();
+		UndoCompletionReasonEntity objEntity = new UndoCompletionReasonEntity();
 		objEntity.setCode("DC");
 		objEntity.setDescription("Data Correction by School");
 		objEntity.setCreateUser("GRADUATION");
 		objEntity.setUpdateUser("GRADUATION");
 		objEntity.setCreateDate(new Date(System.currentTimeMillis()));
 		objEntity.setUpdateDate(new Date(System.currentTimeMillis()));
-		Optional<UngradReasonEntity> ent = Optional.of(objEntity);
-		Mockito.when(gradUngradReasonsRepository.findById(reasonCode)).thenReturn(ent);
-		ungradReasonService.getSpecificUngradReasonCode(reasonCode);
+		Optional<UndoCompletionReasonEntity> ent = Optional.of(objEntity);
+		Mockito.when(gradUndoCompletionReasonsRepository.findById(reasonCode)).thenReturn(ent);
+		UndoCompletionReason res = ungradReasonService.getSpecificUndoCompletionReasonCode(reasonCode);
+		assertThat(res.getCode()).isEqualTo(obj.getCode());
 	}
 	
 	@Test
-	public void testGetSpecificUngradReasonCodeReturnsNull() {
+	public void testGetSpecificUndoCompletionReasonCodeReturnsNull() {
 		String reasonCode = "DC";
-		Mockito.when(gradUngradReasonsRepository.findById(reasonCode)).thenReturn(Optional.empty());
-		ungradReasonService.getSpecificUngradReasonCode(reasonCode);
+		Mockito.when(gradUndoCompletionReasonsRepository.findById(reasonCode)).thenReturn(Optional.empty());
+		UndoCompletionReason res = ungradReasonService.getSpecificUndoCompletionReasonCode(reasonCode);
+		assertThat(res).isNull();
 	}
 	
 	
 	@Test
-	public void testCreateUngradReason() {
-		UngradReason obj = new UngradReason();
+	public void testCreateUndoCompletionReason() {
+		UndoCompletionReason obj = new UndoCompletionReason();
 		obj.setCode("DC");
 		obj.setDescription("Data Correction by School");
 		obj.setCreateUser("GRADUATION");
 		obj.setUpdateUser("GRADUATION");
 		obj.setCreateDate(new Date(System.currentTimeMillis()));
 		obj.setUpdateDate(new Date(System.currentTimeMillis()));
-		UngradReasonEntity objEntity = new UngradReasonEntity();
+		UndoCompletionReasonEntity objEntity = new UndoCompletionReasonEntity();
 		objEntity.setCode("DC");
 		objEntity.setDescription("Data Correction by School");
 		objEntity.setCreateUser("GRADUATION");
 		objEntity.setUpdateUser("GRADUATION");
 		objEntity.setCreateDate(new Date(System.currentTimeMillis()));
 		objEntity.setUpdateDate(new Date(System.currentTimeMillis()));
-		Mockito.when(gradUngradReasonsRepository.findById(obj.getCode())).thenReturn(Optional.empty());
-		Mockito.when(gradUngradReasonsRepository.save(objEntity)).thenReturn(objEntity);
-		ungradReasonService.createUngradReason(obj);
+		Mockito.when(gradUndoCompletionReasonsRepository.findById(obj.getCode())).thenReturn(Optional.empty());
+		Mockito.when(gradUndoCompletionReasonsRepository.save(objEntity)).thenReturn(objEntity);
+		UndoCompletionReason res = ungradReasonService.createUndoCompletionReason(obj);
+		assertThat(res).isNotNull();
+		assertThat(res.getCode()).isEqualTo(obj.getCode());
 		
 	}
 	
 	@Test(expected = GradBusinessRuleException.class)
-	public void testCreateUngradReason_codeAlreadyExists() {
-		UngradReason obj = new UngradReason();
+	public void testCreateUndoCompletionReason_codeAlreadyExists() {
+		UndoCompletionReason obj = new UndoCompletionReason();
 		obj.setCode("DC");
 		obj.setDescription("Data Correction by School");
 		obj.setCreateUser("GRADUATION");
 		obj.setUpdateUser("GRADUATION");
 		obj.setCreateDate(new Date(System.currentTimeMillis()));
 		obj.setUpdateDate(new Date(System.currentTimeMillis()));
-		UngradReasonEntity objEntity = new UngradReasonEntity();
+		UndoCompletionReasonEntity objEntity = new UndoCompletionReasonEntity();
 		objEntity.setCode("DC");
 		objEntity.setDescription("Data Correction by School");
 		objEntity.setCreateUser("GRADUATION");
 		objEntity.setUpdateUser("GRADUATION");
 		objEntity.setCreateDate(new Date(System.currentTimeMillis()));
 		objEntity.setUpdateDate(new Date(System.currentTimeMillis()));
-		Optional<UngradReasonEntity> ent = Optional.of(objEntity);
-		Mockito.when(gradUngradReasonsRepository.findById(obj.getCode())).thenReturn(ent);
-		ungradReasonService.createUngradReason(obj);
+		Optional<UndoCompletionReasonEntity> ent = Optional.of(objEntity);
+		Mockito.when(gradUndoCompletionReasonsRepository.findById(obj.getCode())).thenReturn(ent);
+		UndoCompletionReason res = ungradReasonService.createUndoCompletionReason(obj);
+		assertThat(res).isNotNull();
 		
 	}
 	
 	@Test
-	public void testUpdateUngradReason() {
-		UngradReason obj = new UngradReason();
+	public void testUpdateUndoCompletionReason() {
+		UndoCompletionReason obj = new UndoCompletionReason();
 		obj.setCode("DC");
 		obj.setDescription("Data Correction by Schools");
 		obj.setCreateUser("GRADUATION");
 		obj.setUpdateUser("GRADUATION");
 		obj.setCreateDate(new Date(System.currentTimeMillis()));
 		obj.setUpdateDate(new Date(System.currentTimeMillis()));
-		UngradReasonEntity objEntity = new UngradReasonEntity();
+		UndoCompletionReasonEntity objEntity = new UndoCompletionReasonEntity();
 		objEntity.setCode("DC");
 		objEntity.setDescription("Data Correction by School");
 		objEntity.setCreateUser("GRADUATION");
 		objEntity.setUpdateUser("GRADUATION");
 		objEntity.setCreateDate(new Date(System.currentTimeMillis()));
 		objEntity.setUpdateDate(new Date(System.currentTimeMillis()));
-		Optional<UngradReasonEntity> ent = Optional.of(objEntity);
-		Mockito.when(gradUngradReasonsRepository.findById(obj.getCode())).thenReturn(ent);
-		Mockito.when(gradUngradReasonsRepository.save(objEntity)).thenReturn(objEntity);
-		ungradReasonService.updateUngradReason(obj);
-		
+		Optional<UndoCompletionReasonEntity> ent = Optional.of(objEntity);
+		Mockito.when(gradUndoCompletionReasonsRepository.findById(obj.getCode())).thenReturn(ent);
+		Mockito.when(gradUndoCompletionReasonsRepository.save(objEntity)).thenReturn(objEntity);
+		UndoCompletionReason res = ungradReasonService.updateUndoCompletionReason(obj);
+		assertThat(res).isNotNull();
 	}
 	
 	@Test(expected = GradBusinessRuleException.class)
-	public void testUpdateUngradReason_codeAlreadyExists() {
-		UngradReason obj = new UngradReason();
+	public void testUpdateUndoCompletionReason_codeAlreadyExists() {
+		UndoCompletionReason obj = new UndoCompletionReason();
 		obj.setCode("DC");
 		obj.setDescription("Data Correction by Schools");
 		obj.setCreateUser("GRADUATION");
 		obj.setUpdateUser("GRADUATION");
 		obj.setCreateDate(new Date(System.currentTimeMillis()));
 		obj.setUpdateDate(new Date(System.currentTimeMillis()));
-		UngradReasonEntity objEntity = new UngradReasonEntity();
+		UndoCompletionReasonEntity objEntity = new UndoCompletionReasonEntity();
 		objEntity.setCode("DC");
 		objEntity.setDescription("Data Correction by School");
 		objEntity.setCreateUser("GRADUATION");
 		objEntity.setUpdateUser("GRADUATION");
 		objEntity.setCreateDate(new Date(System.currentTimeMillis()));
 		objEntity.setUpdateDate(new Date(System.currentTimeMillis()));
-		Mockito.when(gradUngradReasonsRepository.findById(obj.getCode())).thenReturn(Optional.empty());
-		ungradReasonService.updateUngradReason(obj);
-		
+		Mockito.when(gradUndoCompletionReasonsRepository.findById(obj.getCode())).thenReturn(Optional.empty());
+		UndoCompletionReason res = ungradReasonService.updateUndoCompletionReason(obj);
+		assertThat(res).isNotNull();
 	}	
 }

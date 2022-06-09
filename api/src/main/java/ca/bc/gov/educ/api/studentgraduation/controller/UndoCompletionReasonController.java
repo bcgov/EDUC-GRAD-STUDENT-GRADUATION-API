@@ -21,10 +21,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ca.bc.gov.educ.api.studentgraduation.model.dto.StudentUngradReason;
-import ca.bc.gov.educ.api.studentgraduation.model.dto.UngradReason;
-import ca.bc.gov.educ.api.studentgraduation.service.StudentUngradReasonService;
-import ca.bc.gov.educ.api.studentgraduation.service.UngradReasonService;
+import ca.bc.gov.educ.api.studentgraduation.model.dto.StudentUndoCompletionReason;
+import ca.bc.gov.educ.api.studentgraduation.model.dto.UndoCompletionReason;
+import ca.bc.gov.educ.api.studentgraduation.service.StudentUndoCompletionReasonService;
+import ca.bc.gov.educ.api.studentgraduation.service.UndoCompletionReasonService;
 import ca.bc.gov.educ.api.studentgraduation.util.ApiResponseModel;
 import ca.bc.gov.educ.api.studentgraduation.util.EducGradStudentGraduationApiConstants;
 import ca.bc.gov.educ.api.studentgraduation.util.GradValidation;
@@ -41,15 +41,15 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 @RestController
 @RequestMapping(EducGradStudentGraduationApiConstants.GRAD_STUDENT_GRADUATION_UNGRAD_REASON_CONTROLLER_ROOT_MAPPING)
 @OpenAPIDefinition(info = @Info(title = "API for Student and General Ungrad Reasons.", description = "This API is for Student and General Ungrad Reasons endpoints.", version = "1"), security = {@SecurityRequirement(name = "OAUTH2", scopes = {"READ_GRAD_STUDENT_UNGRAD_REASONS_DATA"})})
-public class UngradReasonController {
+public class UndoCompletionReasonController {
 
-    private static Logger logger = LoggerFactory.getLogger(UngradReasonController.class);
+    private static Logger logger = LoggerFactory.getLogger(UndoCompletionReasonController.class);
 
     @Autowired
-    StudentUngradReasonService studentUngradReasonService;
+    StudentUndoCompletionReasonService studentUndoCompletionReasonService;
     
     @Autowired
-	UngradReasonService ungradReasonService;
+	UndoCompletionReasonService ungradReasonService;
     
     @Autowired
 	GradValidation validation;
@@ -63,24 +63,24 @@ public class UngradReasonController {
     @PreAuthorize(PermissionsContants.READ_GRAD_STUDENT_UNGRAD_REASONS_DATA)
     @Operation(summary = "Find Student Ungrad Reasons by Student ID", description = "Get Student Ungrad Reasons By Student ID", tags = { "Ungrad Reasons" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
-    public ResponseEntity<List<StudentUngradReason>> getAllStudentUngradReasonsList(@PathVariable String studentID) { 
-    	logger.debug("getAllStudentUngradReasonsList : ");
-        return response.GET(studentUngradReasonService.getAllStudentUngradReasonsList(UUID.fromString(studentID)));
+    public ResponseEntity<List<StudentUndoCompletionReason>> getAllStudentUndoCompletionReasonsList(@PathVariable String studentID) { 
+    	logger.debug("getAllStudentUndoCompletionReasonsList : ");
+        return response.GET(studentUndoCompletionReasonService.getAllStudentUndoCompletionReasonsList(UUID.fromString(studentID)));
     }
     
     @PostMapping(EducGradStudentGraduationApiConstants.GET_ALL_STUDENT_UNGRAD_MAPPING)
     @PreAuthorize(PermissionsContants.CREATE_GRAD_STUDENT_UNGRAD_REASONS_DATA)
     @Operation(summary = "Create an Ungrad Reasons", description = "Create an Ungrad Reasons", tags = { "Ungrad Reasons" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK"), @ApiResponse(responseCode = "400", description = "BAD REQUEST")})
-    public ResponseEntity<ApiResponseModel<StudentUngradReason>> createGradStudentUngradReason(@PathVariable String studentID,@Valid @RequestBody StudentUngradReason gradStudentUngradReasons) { 
-    	logger.debug("createUngradReason : ");
-    	validation.requiredField(gradStudentUngradReasons.getGraduationStudentRecordID(), "Student ID");
-    	validation.requiredField(gradStudentUngradReasons.getUngradReasonCode(), "Ungrad Reason Code");
+    public ResponseEntity<ApiResponseModel<StudentUndoCompletionReason>> createGradStudentUndoCompletionReason(@PathVariable String studentID,@Valid @RequestBody StudentUndoCompletionReason gradStudentUndoCompletionReasons) { 
+    	logger.debug("createUndoCompletionReason : ");
+    	validation.requiredField(gradStudentUndoCompletionReasons.getGraduationStudentRecordID(), "Student ID");
+    	validation.requiredField(gradStudentUndoCompletionReasons.getUndoCompletionReasonCode(), "Ungrad Reason Code");
     	if(validation.hasErrors()) {
     		validation.stopOnErrors();
     		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     	}
-        return response.CREATED(studentUngradReasonService.createStudentUngradReason(gradStudentUngradReasons));
+        return response.CREATED(studentUndoCompletionReasonService.createStudentUndoCompletionReason(gradStudentUndoCompletionReasons));
     }
 	
 
@@ -89,9 +89,9 @@ public class UngradReasonController {
 	@Operation(summary = "Find all Ungrad Reasons", description = "Get all Ungrad Reasons", tags = { "Ungrad Reasons" })
 	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "OK"),
 			@ApiResponse(responseCode = "204", description = "NO CONTENT.") })
-	public ResponseEntity<List<UngradReason>> getAllUngradReasonCodeList() {
-		logger.debug("getAllUngradReasonCodeList : ");
-		return response.GET(ungradReasonService.getAllUngradReasonCodeList());
+	public ResponseEntity<List<UndoCompletionReason>> getAllUndoCompletionReasonCodeList() {
+		logger.debug("getAllUndoCompletionReasonCodeList : ");
+		return response.GET(ungradReasonService.getAllUndoCompletionReasonCodeList());
 	}
 
 	@GetMapping(EducGradStudentGraduationApiConstants.GET_ALL_UNGRAD_BY_CODE_MAPPING)
@@ -100,9 +100,9 @@ public class UngradReasonController {
 			"Ungrad Reasons" })
 	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "OK"),
 			@ApiResponse(responseCode = "204", description = "NO CONTENT.") })
-	public ResponseEntity<UngradReason> getSpecificUngradReasonCode(@PathVariable String reasonCode) {
-		logger.debug("getSpecificUngradReasonCode : ");
-		UngradReason gradResponse = ungradReasonService.getSpecificUngradReasonCode(reasonCode);
+	public ResponseEntity<UndoCompletionReason> getSpecificUndoCompletionReasonCode(@PathVariable String reasonCode) {
+		logger.debug("getSpecificUndoCompletionReasonCode : ");
+		UndoCompletionReason gradResponse = ungradReasonService.getSpecificUndoCompletionReasonCode(reasonCode);
 		if (gradResponse != null) {
 			return response.GET(gradResponse);
 		} else {
@@ -117,16 +117,16 @@ public class UngradReasonController {
 			"Ungrad Reasons" })
 	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "OK"),
 			@ApiResponse(responseCode = "400", description = "BAD REQUEST") })
-	public ResponseEntity<ApiResponseModel<UngradReason>> createUngradReason(
-			@Valid @RequestBody UngradReason gradUngradReasons) {
-		logger.debug("createGradUngradReason : ");
-		validation.requiredField(gradUngradReasons.getCode(), REASON_CODE);
-		validation.requiredField(gradUngradReasons.getDescription(), "Reason Description");
+	public ResponseEntity<ApiResponseModel<UndoCompletionReason>> createUndoCompletionReason(
+			@Valid @RequestBody UndoCompletionReason gradUndoCompletionReasons) {
+		logger.debug("createGradUndoCompletionReason : ");
+		validation.requiredField(gradUndoCompletionReasons.getCode(), REASON_CODE);
+		validation.requiredField(gradUndoCompletionReasons.getDescription(), "Reason Description");
 		if (validation.hasErrors()) {
 			validation.stopOnErrors();
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		return response.CREATED(ungradReasonService.createUngradReason(gradUngradReasons));
+		return response.CREATED(ungradReasonService.createUndoCompletionReason(gradUndoCompletionReasons));
 	}
 
 	@PutMapping(EducGradStudentGraduationApiConstants.GET_ALL_UNGRAD_MAPPING)
@@ -135,16 +135,16 @@ public class UngradReasonController {
 			"Ungrad Reasons" })
 	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "OK"),
 			@ApiResponse(responseCode = "400", description = "BAD REQUEST") })
-	public ResponseEntity<ApiResponseModel<UngradReason>> updateUngradReason(
-			@Valid @RequestBody UngradReason gradUngradReasons) {
-		logger.info("updateUngradReason : ");
-		validation.requiredField(gradUngradReasons.getCode(), REASON_CODE);
-		validation.requiredField(gradUngradReasons.getDescription(), "Reason Description");
+	public ResponseEntity<ApiResponseModel<UndoCompletionReason>> updateUndoCompletionReason(
+			@Valid @RequestBody UndoCompletionReason gradUndoCompletionReasons) {
+		logger.info("updateUndoCompletionReason : ");
+		validation.requiredField(gradUndoCompletionReasons.getCode(), REASON_CODE);
+		validation.requiredField(gradUndoCompletionReasons.getDescription(), "Reason Description");
 		if (validation.hasErrors()) {
 			validation.stopOnErrors();
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		return response.UPDATED(ungradReasonService.updateUngradReason(gradUngradReasons));
+		return response.UPDATED(ungradReasonService.updateUndoCompletionReason(gradUndoCompletionReasons));
 	}
 
 	@DeleteMapping(EducGradStudentGraduationApiConstants.GET_ALL_UNGRAD_BY_CODE_MAPPING)
@@ -153,13 +153,13 @@ public class UngradReasonController {
 			"Ungrad Reasons" })
 	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "OK"),
 			@ApiResponse(responseCode = "400", description = "BAD REQUEST") })
-	public ResponseEntity<Void> deleteUngradReason(@Valid @PathVariable String reasonCode) {
-		logger.debug("deleteGradUngradReason : ");
+	public ResponseEntity<Void> deleteUndoCompletionReason(@Valid @PathVariable String reasonCode) {
+		logger.debug("deleteGradUndoCompletionReason : ");
 		validation.requiredField(reasonCode, REASON_CODE);
 		if (validation.hasErrors()) {
 			validation.stopOnErrors();
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		return response.DELETE(ungradReasonService.deleteUngradReason(reasonCode));
+		return response.DELETE(ungradReasonService.deleteUndoCompletionReason(reasonCode));
 	}
 }
