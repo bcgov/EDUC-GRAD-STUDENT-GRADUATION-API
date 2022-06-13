@@ -18,7 +18,7 @@ public class EducGradStudentGraduationApiConstants {
     //API end-point Mapping constants
     public static final String API_ROOT_MAPPING = "";
     public static final String API_VERSION = "v1";
-    public static final String GRAD_STUDENT_GRADUATION_API_ROOT_MAPPING = "/api/" + API_VERSION;
+    public static final String GRAD_STUDENT_GRADUATION_API_ROOT_MAPPING = "/api/" + API_VERSION+"/studentgraduation";
     
     public static final String GRAD_STUDENT_GRADUATION_LGSC_CONTROLLER_ROOT_MAPPING = GRAD_STUDENT_GRADUATION_API_ROOT_MAPPING + "/lgSc";
     public static final String GRAD_STUDENT_GRADUATION_UNGRAD_REASON_CONTROLLER_ROOT_MAPPING = GRAD_STUDENT_GRADUATION_API_ROOT_MAPPING + "/undocompletion";
