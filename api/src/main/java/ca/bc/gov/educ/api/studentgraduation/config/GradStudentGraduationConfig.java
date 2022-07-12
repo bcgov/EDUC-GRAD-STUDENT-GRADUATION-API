@@ -25,11 +25,4 @@ public class GradStudentGraduationConfig implements WebMvcConfigurer {
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(requestInterceptor).addPathPatterns("/**");
 	}
-
-	@Bean
-	public MessageHelper messageHelper() {
-		return new MessageHelper();
-	}
-
-	
 }
