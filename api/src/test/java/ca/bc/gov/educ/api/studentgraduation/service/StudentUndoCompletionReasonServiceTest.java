@@ -139,7 +139,7 @@ public class StudentUndoCompletionReasonServiceTest {
     }
 
     @Test
-    public void testGetStudentUndoCompletionReasons() {
+    public void testGetAllStudentUndoCompletionReasons() {
         // UUID
         final UUID studentID = UUID.randomUUID();
         // Ungrad Reasons
@@ -155,9 +155,9 @@ public class StudentUndoCompletionReasonServiceTest {
         studentUndoCompletionReason.setUndoCompletionReasonCode(gradUndoCompletionReason.getCode());
         gradStudentUndoCompletionReasonsList.add(studentUndoCompletionReason);
 
-        when(gradStudentUndoCompletionReasonsRepository.existsByUndoCompletionReasonCode(gradUndoCompletionReason.getCode())).thenReturn(gradStudentUndoCompletionReasonsList);
-        var result = studentUndoCompletionReasonService.getStudentUndoCompletionReasons(gradUndoCompletionReason.getCode());
-        assertThat(result).isTrue();
+        when(gradStudentUndoCompletionReasonsRepository.findByGraduationStudentRecordID(studentID)).thenReturn(gradStudentUndoCompletionReasonsList);
+        var result = studentUndoCompletionReasonService.getAllStudentUndoCompletionReasonsList(studentID);
+        assertThat(result).hasSize(1);
 
     }
 }

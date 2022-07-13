@@ -52,11 +52,6 @@ public class StudentUndoCompletionReasonService {
 	    return studentUndoCompletionReasonTransformer.transformToDTO(studentUndoCompletionReasonRepository.findByGraduationStudentRecordID(studentID));
 	}
 
-    public boolean getStudentUndoCompletionReasons(String reasonCode) {
-		List<StudentUndoCompletionReasonEntity> gradList = studentUndoCompletionReasonRepository.existsByUndoCompletionReasonCode(reasonCode);
-		return !gradList.isEmpty();
-	}
-
 	public StudentUndoCompletionReason createStudentUndoCompletionReason(@Valid StudentUndoCompletionReason studentUndoCompletionReason) {
 		StudentUndoCompletionReasonEntity toBeSavedObject = studentUndoCompletionReasonTransformer.transformToEntity(studentUndoCompletionReason);
 		if(studentUndoCompletionReason.getStudentUndoCompletionReasonID() != null) {
