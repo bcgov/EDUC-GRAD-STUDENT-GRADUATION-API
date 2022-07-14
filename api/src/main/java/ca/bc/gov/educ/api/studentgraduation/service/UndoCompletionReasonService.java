@@ -1,8 +1,10 @@
 package ca.bc.gov.educ.api.studentgraduation.service;
 
 import ca.bc.gov.educ.api.studentgraduation.model.dto.UndoCompletionReason;
+import ca.bc.gov.educ.api.studentgraduation.model.entity.StudentUndoCompletionReasonEntity;
 import ca.bc.gov.educ.api.studentgraduation.model.entity.UndoCompletionReasonEntity;
 import ca.bc.gov.educ.api.studentgraduation.model.transformer.UndoCompletionReasonTransformer;
+import ca.bc.gov.educ.api.studentgraduation.repository.StudentUndoCompletionReasonRepository;
 import ca.bc.gov.educ.api.studentgraduation.repository.UndoCompletionReasonRepository;
 import ca.bc.gov.educ.api.studentgraduation.util.GradValidation;
 import org.apache.commons.lang3.StringUtils;
@@ -25,9 +27,9 @@ public class UndoCompletionReasonService {
 
 	@Autowired
 	private UndoCompletionReasonTransformer undoCompletionReasonTransformer;
-	
+
 	@Autowired
-	private StudentUndoCompletionReasonService studentUndoCompletionReasonService;
+	private StudentUndoCompletionReasonRepository studentUndoCompletionReasonRepository;
 
 	@Autowired
 	GradValidation validation;	
@@ -82,7 +84,7 @@ public class UndoCompletionReasonService {
 	}
 
 	public int deleteUndoCompletionReason(@Valid String reasonCode) {
-		boolean isPresent = studentUndoCompletionReasonService.getStudentUndoCompletionReasons(reasonCode);
+		boolean isPresent = getStudentUndoCompletionReasons(reasonCode);
 		if(isPresent) {
 			validation.addErrorAndStop(
 					String.format("This Ungrad Reason [%s] cannot be deleted as some students have this reason associated with them.",reasonCode));
@@ -92,5 +94,10 @@ public class UndoCompletionReasonService {
 			return 1;
 		}
 		
+	}
+
+	private boolean getStudentUndoCompletionReasons(String reasonCode) {
+		List<StudentUndoCompletionReasonEntity> gradList = studentUndoCompletionReasonRepository.existsByUndoCompletionReasonCode(reasonCode);
+		return !gradList.isEmpty();
 	}
 }
