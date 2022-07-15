@@ -25,6 +25,7 @@ public class TranscriptMessage extends BaseModel{
 	private String careerProgramMessage;
 	private String gradProjectedMessage;
 	private String honourProjectedNote;
+	private String graduationSchool;
 
 	@Override
 	public String toString() {
@@ -40,6 +41,7 @@ public class TranscriptMessage extends BaseModel{
 				", careerProgramMessage='" + careerProgramMessage + '\'' +
 				", gradProjectedMessage='" + gradProjectedMessage + '\'' +
 				", honourProjectedNote='" + honourProjectedNote + '\'' +
+				", graduationSchool='"+graduationSchool+'\'' +
 				'}';
 	}
 }
