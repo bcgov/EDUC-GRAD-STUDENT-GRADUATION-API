@@ -51,7 +51,6 @@ public class LettergradeSpecialcaseControllerTest {
 		obj.setGrade("B");
 		obj.setPassFlag("Y");
 		gradList.add(obj);
-		
 		Mockito.when(letterGradeService.getAllLetterGradesList()).thenReturn(gradList);
 		lettergradeSpecialcaseController.getAllLetterGrades();
 		Mockito.verify(letterGradeService).getAllLetterGradesList();
