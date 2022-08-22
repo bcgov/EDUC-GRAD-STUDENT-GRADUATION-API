@@ -29,7 +29,7 @@
             src/main/java/ca/bc/gov/educ/api/studentgraduation/util/**,
             src/main/java/ca/bc/gov/educ/api/studentgraduation/repository/**,
             src/main/java/ca/bc/gov/educ/api/studentgraduation/config/**,
-            src/test/java/ca/bc/gov/educ/api/studentgraduation/util/**,
+            src/test/java/ca/bc/gov/educ/api/studentgraduation/**,
         </sonar.coverage.exclusions>
         <java.version>11</java.version>
         <maven.compiler.version>3.10.1</maven.compiler.version>
