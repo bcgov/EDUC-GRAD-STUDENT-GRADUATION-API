@@ -4,7 +4,10 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
+import ca.bc.gov.educ.api.studentgraduation.model.entity.StudentUndoCompletionReasonEntity;
+import ca.bc.gov.educ.api.studentgraduation.repository.StudentUndoCompletionReasonRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -37,6 +40,9 @@ public class UndoCompletionReasonServiceTest {
 
 	@MockBean
 	private TranscriptMessageRepository gradMessagingRepository;
+
+	@MockBean
+	private StudentUndoCompletionReasonRepository studentUndoCompletionReasonRepository;
 
 	@Autowired
 	GradValidation validation;
@@ -188,5 +194,23 @@ public class UndoCompletionReasonServiceTest {
 		Mockito.when(gradUndoCompletionReasonsRepository.findById(obj.getCode())).thenReturn(Optional.empty());
 		UndoCompletionReason res = ungradReasonService.updateUndoCompletionReason(obj);
 		assertThat(res).isNotNull();
-	}	
+	}
+
+	@Test(expected = GradBusinessRuleException.class)
+	public void testDeleteUndoCompletionReason_existing() {
+		StudentUndoCompletionReasonEntity ent = new StudentUndoCompletionReasonEntity();
+		ent.setStudentUndoCompletionReasonID(UUID.randomUUID());
+		ent.setUndoCompletionReasonCode("DC");
+
+		Mockito.when(studentUndoCompletionReasonRepository.existsByUndoCompletionReasonCode("DC")).thenReturn(List.of(ent));
+		int count = ungradReasonService.deleteUndoCompletionReason("DC");
+		assertThat(count).isZero();
+	}
+
+	@Test
+	public void testDeleteUndoCompletionReason() {
+		Mockito.when(studentUndoCompletionReasonRepository.existsByUndoCompletionReasonCode("DC")).thenReturn(new ArrayList<>());
+		int count = ungradReasonService.deleteUndoCompletionReason("DC");
+		assertThat(count).isEqualTo(1);
+	}
 }

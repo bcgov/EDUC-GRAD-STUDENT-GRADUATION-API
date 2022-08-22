@@ -7,11 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import ca.bc.gov.educ.api.studentgraduation.model.dto.ProgramAlgorithmRule;
 import ca.bc.gov.educ.api.studentgraduation.model.dto.StudentGraduationAlgorithmData;
@@ -70,6 +66,15 @@ public class AlgorithmRuleController {
     public ResponseEntity<StudentGraduationAlgorithmData> getAllAlgorithmData(@PathVariable String programCode) { 
     	logger.debug("getAllAlgorithmData : ");
         return response.GET(algorithmRuleService.getAllAlgorithmData(programCode));
+    }
+
+    @GetMapping(EducGradStudentGraduationApiConstants.GET_DATA_FOR_ALGORITHM_LIST_MAPPING)
+    @PreAuthorize(PermissionsContants.READ_ALGORITHM_DATA)
+    @Operation(summary = "Read All  Data required by Grad Algorithm", description = "Read All  Data required by Grad Algorithm", tags = { "Algorithm" })
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
+    public ResponseEntity<List<StudentGraduationAlgorithmData>> getAllAlgorithmDataList(@RequestHeader(name="Authorization") String accessToken) {
+        logger.debug("getAllAlgorithmData : ");
+        return response.GET(algorithmRuleService.getAllAlgorithmDataList(accessToken.replace("Bearer ", "")));
     }
     
 }

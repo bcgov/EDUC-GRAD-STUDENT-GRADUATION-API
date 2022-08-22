@@ -90,3 +90,8 @@ springdoc:
 splunk:
   log-helper:
     enabled: ${ENABLE_SPLUNK_LOG_HELPER}
+
+endpoint:
+  grad-program-api:
+    get-all-program:
+      url: ${GRAD_PROGRAM_API}api/v1/programs

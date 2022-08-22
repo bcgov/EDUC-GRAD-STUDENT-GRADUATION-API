@@ -1,18 +1,30 @@
 package ca.bc.gov.educ.api.studentgraduation.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
+import static org.mockito.MockitoAnnotations.openMocks;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.function.Consumer;
 
+import ca.bc.gov.educ.api.studentgraduation.model.dto.GraduationProgramCode;
+import ca.bc.gov.educ.api.studentgraduation.model.dto.StudentGraduationAlgorithmData;
+import ca.bc.gov.educ.api.studentgraduation.util.EducGradStudentGraduationApiConstants;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -24,6 +36,8 @@ import ca.bc.gov.educ.api.studentgraduation.repository.LetterGradeRepository;
 import ca.bc.gov.educ.api.studentgraduation.repository.ProgramAlgorithmRuleRepository;
 import ca.bc.gov.educ.api.studentgraduation.repository.SpecialCaseRepository;
 import ca.bc.gov.educ.api.studentgraduation.util.GradValidation;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 
 @RunWith(SpringRunner.class)
@@ -45,7 +59,51 @@ public class AlgorithmRuleServiceTest {
 	
 	@Autowired
 	GradValidation validation;
-	
+
+    @MockBean
+    WebClient webClient;
+
+    @Autowired
+    EducGradStudentGraduationApiConstants constants;
+
+    @Mock
+    WebClient.RequestHeadersSpec requestHeadersMock;
+    @Mock WebClient.RequestHeadersUriSpec requestHeadersUriMock;
+    @Mock WebClient.ResponseSpec responseMock;
+    @Mock WebClient.RequestBodySpec requestBodyMock;
+    @Mock WebClient.RequestBodyUriSpec requestBodyUriMock;
+
+    @BeforeClass
+    public static void setup() {
+
+    }
+
+    @After
+    public void tearDown() {
+
+    }
+
+    @Before
+    public void init() {
+        openMocks(this);
+    }
+
+    @Test
+    public void testGetAllAlgorithmDataList() throws Exception {
+        String accessToken = "accessToken";
+        GraduationProgramCode code = new GraduationProgramCode();
+        code.setProgramCode("2018-EN");
+        when(this.webClient.get()).thenReturn(this.requestHeadersUriMock);
+        when(this.requestHeadersUriMock.uri(constants.getProgramList())).thenReturn(this.requestHeadersMock);
+        when(this.requestHeadersMock.headers(any(Consumer.class))).thenReturn(this.requestHeadersMock);
+        when(this.requestHeadersMock.retrieve()).thenReturn(this.responseMock);
+        when(this.responseMock.bodyToMono(new ParameterizedTypeReference<List<GraduationProgramCode>>(){})).thenReturn(Mono.just(List.of(code)));
+
+        List<StudentGraduationAlgorithmData> res = algorithmRuleService.getAllAlgorithmDataList(accessToken);
+        assertNotNull(res);
+        assertThat(res).hasSize(1);
+    }
+
 	
 	@Test
 	public void testGetAlgorithmRulesList() {
