@@ -43,6 +43,7 @@ public class EducGradStudentGraduationApiConstants {
     public static final String GET_ALL_ALGORITHM_RULES_MAPPING= "/algorithm-rules";    
     public static final String GET_ALGORITHM_RULES_MAIN_PROGRAM = "/algorithm-rules/{programCode}";
     public static final String GET_DATA_FOR_ALGORITHM_MAPPING = "/algorithmdata/{programCode}";
+    public static final String GET_DATA_FOR_ALGORITHM_LIST_MAPPING = "/algorithmdata";
     
    
     //Default Attribute value constants
@@ -59,4 +60,7 @@ public class EducGradStudentGraduationApiConstants {
     // Splunk LogHelper Enabled
     @Value("${splunk.log-helper.enabled}")
     private boolean splunkLogHelperEnabled;
+
+    @Value("${endpoint.grad-program-api.get-all-program.url}")
+    private String programList;
 }
