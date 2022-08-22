@@ -94,4 +94,4 @@ splunk:
 endpoint:
   grad-program-api:
     get-all-program:
-      url: ${GRAD_PROGRAM_API}api/v1/programs
+      url: ${GRAD_PROGRAM_API}api/v1/program/programs
