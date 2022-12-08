@@ -1,0 +1,1 @@
+INSERT INTO ALGORITHM_RULE_CODE (ALGORITHM_RULE_CODE,LABEL,DESCRIPTION,ACTIVE_RULE,DISPLAY_ORDER,RULE_IMPL_NAME) VALUES ('EQUIVALENCY_RULE','Assessment Equivalency Rule','Checks for eligible, successfully completed courses with a written provincial exam to meet a Graduation Assessment requirement','Y',550,'EquivalencyRule');
