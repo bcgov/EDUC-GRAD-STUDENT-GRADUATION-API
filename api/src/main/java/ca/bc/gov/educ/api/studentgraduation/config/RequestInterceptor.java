@@ -1,7 +1,7 @@
 package ca.bc.gov.educ.api.studentgraduation.config;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import ca.bc.gov.educ.api.studentgraduation.util.*;
 import lombok.val;
@@ -13,7 +13,8 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.AsyncHandlerInterceptor;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+/*GRAD2-1899,  commenting the below line as this import is not in use and showing it as error*/
+//import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import java.time.Instant;
 

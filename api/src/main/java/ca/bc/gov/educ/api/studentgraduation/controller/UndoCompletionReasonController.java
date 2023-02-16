@@ -3,7 +3,7 @@ package ca.bc.gov.educ.api.studentgraduation.controller;
 import java.util.List;
 import java.util.UUID;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
