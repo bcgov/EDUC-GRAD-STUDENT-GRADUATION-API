@@ -137,7 +137,7 @@ public class UndoCompletionReasonController {
 			@ApiResponse(responseCode = "400", description = "BAD REQUEST") })
 	public ResponseEntity<ApiResponseModel<UndoCompletionReason>> updateUndoCompletionReason(
 			@Valid @RequestBody UndoCompletionReason gradUndoCompletionReasons) {
-		logger.info("updateUndoCompletionReason : ");
+		logger.debug("updateUndoCompletionReason : ");
 		validation.requiredField(gradUndoCompletionReasons.getCode(), REASON_CODE);
 		validation.requiredField(gradUndoCompletionReasons.getDescription(), "Reason Description");
 		if (validation.hasErrors()) {
