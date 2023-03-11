@@ -24,13 +24,14 @@ import ca.bc.gov.educ.api.studentgraduation.util.GradValidation;
 public class RestErrorHandler extends ResponseEntityExceptionHandler {
 
 	private static final Logger LOGGER = Logger.getLogger(RestErrorHandler.class);
+	public static final String ERROR_MSG = "Illegal argument ERROR IS:";
 
 	@Autowired
 	GradValidation validation;
 
 	@ExceptionHandler(value = { IllegalArgumentException.class, IllegalStateException.class })
 	protected ResponseEntity<Object> handleConflict(RuntimeException ex, WebRequest request) {
-		LOGGER.error("Illegal argument ERROR IS: " + ex.getClass().getName(), ex);
+		LOGGER.error(ERROR_MSG + ex.getClass().getName(), ex);
 		ApiResponseModel<?> reponse = ApiResponseModel.ERROR(null, ex.getLocalizedMessage());
 		validation.ifErrors(errorList -> reponse.addErrorMessages(errorList));
 		validation.ifWarnings(warningList -> reponse.addWarningMessages(warningList));
@@ -70,7 +71,7 @@ public class RestErrorHandler extends ResponseEntityExceptionHandler {
 	protected ResponseEntity<Object> handleOptimisticEntityLockException(OptimisticEntityLockException ex, WebRequest request) {
 
 		LOGGER.error("EXCEPTION IS: " + ex.getClass().getName(), ex);
-		LOGGER.error("Illegal argument ERROR IS: " + ex.getClass().getName(), ex);
+		LOGGER.error(ERROR_MSG + ex.getClass().getName(), ex);
 		ApiResponseModel<?> response = ApiResponseModel.ERROR(null);
 		validation.ifErrors(errorList -> response.addErrorMessages(errorList));
 		validation.ifWarnings(warningList -> response.addWarningMessages(warningList));
@@ -107,7 +108,7 @@ public class RestErrorHandler extends ResponseEntityExceptionHandler {
 	protected ResponseEntity<Object> handleUncaughtException(Exception ex, WebRequest request) {
 
 		LOGGER.error("EXCEPTION IS: " + ex.getClass().getName(), ex);
-		LOGGER.error("Illegal argument ERROR IS: " + ex.getClass().getName(), ex);
+		LOGGER.error(ERROR_MSG + ex.getClass().getName(), ex);
 		ApiResponseModel<?> response = ApiResponseModel.ERROR(null);
 		validation.ifErrors(errorList -> response.addErrorMessages(errorList));
 		validation.ifWarnings(warningList -> response.addWarningMessages(warningList));
