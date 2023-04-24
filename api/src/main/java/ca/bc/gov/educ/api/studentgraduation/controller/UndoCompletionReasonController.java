@@ -3,7 +3,7 @@ package ca.bc.gov.educ.api.studentgraduation.controller;
 import java.util.List;
 import java.util.UUID;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -137,7 +137,7 @@ public class UndoCompletionReasonController {
 			@ApiResponse(responseCode = "400", description = "BAD REQUEST") })
 	public ResponseEntity<ApiResponseModel<UndoCompletionReason>> updateUndoCompletionReason(
 			@Valid @RequestBody UndoCompletionReason gradUndoCompletionReasons) {
-		logger.info("updateUndoCompletionReason : ");
+		logger.debug("updateUndoCompletionReason : ");
 		validation.requiredField(gradUndoCompletionReasons.getCode(), REASON_CODE);
 		validation.requiredField(gradUndoCompletionReasons.getDescription(), "Reason Description");
 		if (validation.hasErrors()) {

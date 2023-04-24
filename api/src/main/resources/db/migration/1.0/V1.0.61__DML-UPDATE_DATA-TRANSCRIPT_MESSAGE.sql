@@ -1,0 +1,4 @@
+UPDATE TRANSCRIPT_MESSAGE SET GRAD_MAIN_MESSAGE = 'Based on the information provided by the school, this student has not yet graduated in the %s. Note: Students are no longer eligible to graduate on the 1995 graduation program unless required courses were completed by June 30, 2011. Contact your school counselor for more information.'
+WHERE MESSAGE_TYPE_CODE='NOT_GRADUATED' AND GRADUATION_PROGRAM_CODE IN ('1996-EN', '1996-PF');
+UPDATE TRANSCRIPT_MESSAGE SET GRAD_MAIN_MESSAGE = 'Based on the information provided by the school, this student has not yet graduated in the %s. Note: Students are no longer eligible to graduate on the 2004 graduation program unless required courses were completed by June 30, 2021. Contact your school counselor for more information.'
+WHERE MESSAGE_TYPE_CODE='NOT_GRADUATED' AND GRADUATION_PROGRAM_CODE IN ('2004-EN', '2004-PF');
