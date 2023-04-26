@@ -31,4 +31,6 @@ public class GradStudentGraduationConfig {
 	public RestTemplate restTemplate(RestTemplateBuilder builder) {
 		return builder.build();
 	}
+
+
 }
