@@ -1,0 +1,1 @@
+INSERT INTO LETTER_GRADE (LETTER_GRADE,PASS_FLAG,GPA_MARK_VALUE,DESCRIPTION,PERCENT_RANGE_HIGH,PERCENT_RANGE_LOW,LABEL,EXPIRY_DATE) VALUES ('IE','N',0,'The student, for a variety of reasons, has not provided sufficient evidence of learning in relation to the learning standards.',0,0,'Insufficient Evidence',NULL);
