@@ -1,7 +1,6 @@
 INSERT INTO ALGORITHM_RULE_CODE (ALGORITHM_RULE_CODE, RULE_IMPL_NAME, LABEL, DESCRIPTION, ACTIVE_RULE, DISPLAY_ORDER)
-VALUES('MATCH_CREDITS_2023_RULE', 'MatchCredits2023Rule', 'Match Credits for 2023-EN and 2023-PF',
-	'Checks if student earned a minimum of 4-credits in one or more eligible courses for a required subject area (i.e., courses listed under the applicable Rule #)', 'Y', 560);
+VALUES('MIN_ELC_CREDITS_2023_RULE', 'MinElectiveCredits2023Rule', 'Minimum Elective Credits', 'Checks if student earned a minimum of 28 elective credits', 'Y', 570);
 
-UPDATE PROGRAM_ALGORITHM_RULE SET ALGORITHM_RULE_CODE = 'MATCH_CREDITS_2023_RULE'
+UPDATE PROGRAM_ALGORITHM_RULE SET ALGORITHM_RULE_CODE = 'MIN_ELC_CREDITS_2023_RULE'
 WHERE GRADUATION_PROGRAM_CODE IN ('2023-EN', '2023-PF')
-AND ALGORITHM_RULE_CODE = 'MATCH_CREDITS_RULE';
+AND ALGORITHM_RULE_CODE = 'MIN_ELECTIVE_CREDITS_RULE';
