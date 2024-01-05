@@ -1,18 +1,15 @@
 package ca.bc.gov.educ.api.studentgraduation.model.dto;
 
-import java.util.UUID;
-
-import org.springframework.stereotype.Component;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.stereotype.Component;
 
-import jakarta.persistence.Column;
+import java.util.UUID;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Component
-public class TranscriptMessage extends BaseModel{
+public class TranscriptMessage extends BaseModel {
 
 	private UUID transcriptMessageID; 
 	private String programCode; 
@@ -21,7 +18,7 @@ public class TranscriptMessage extends BaseModel{
 	private String gradDateMessage;
 	private String honourNote;
 	private String adIBProgramMessage;
-	private String programCadre;
+	private String frenchImmersionMessage;
 	private String careerProgramMessage;
 	private String gradProjectedMessage;
 	private String honourProjectedNote;
@@ -37,7 +34,7 @@ public class TranscriptMessage extends BaseModel{
 				", gradDateMessage='" + gradDateMessage + '\'' +
 				", honourNote='" + honourNote + '\'' +
 				", adIBProgramMessage='" + adIBProgramMessage + '\'' +
-				", programCadre='" + programCadre + '\'' +
+				", frenchImmersionMessage='" + frenchImmersionMessage + '\'' +
 				", careerProgramMessage='" + careerProgramMessage + '\'' +
 				", gradProjectedMessage='" + gradProjectedMessage + '\'' +
 				", honourProjectedNote='" + honourProjectedNote + '\'' +

@@ -52,7 +52,7 @@ public class TranscriptMessageServiceTest {
 		obj.setGradDateMessage("GD");
 		obj.setHonourNote("Y");
 		obj.setGradMainMessage("abcd");
-		obj.setProgramCadre("PR");
+		obj.setFrenchImmersionMessage("PR");
 		obj.setCreateUser("GRADUATION");
 		obj.setUpdateUser("GRADUATION");
 		obj.setCreateDate(new Date(System.currentTimeMillis()));
@@ -67,7 +67,7 @@ public class TranscriptMessageServiceTest {
 		obj.setGradDateMessage("GD");
 		obj.setHonourNote("Y");
 		obj.setGradMainMessage("abcd");
-		obj.setProgramCadre("PR");
+		obj.setFrenchImmersionMessage("PR");
 		obj.setCreateUser("GRADUATION");
 		obj.setUpdateUser("GRADUATION");
 		obj.setCreateDate(new Date(System.currentTimeMillis()));
@@ -89,7 +89,7 @@ public class TranscriptMessageServiceTest {
 		obj.setGradDateMessage("GD");
 		obj.setHonourNote("Y");
 		obj.setGradMainMessage("abcd");
-		obj.setProgramCadre("PR");
+		obj.setFrenchImmersionMessage("PR");
 		obj.setCreateUser("GRADUATION");
 		obj.setUpdateUser("GRADUATION");
 		obj.setCreateDate(new Date(System.currentTimeMillis()));
@@ -103,7 +103,7 @@ public class TranscriptMessageServiceTest {
 		objEntity.setGradDateMessage("GD");
 		objEntity.setHonourNote("Y");
 		objEntity.setGradMainMessage("abcd");
-		objEntity.setProgramCadre("PR");
+		objEntity.setFrenchImmersionMessage("PR");
 		objEntity.setCreateUser("GRADUATION");
 		objEntity.setUpdateUser("GRADUATION");
 		objEntity.setCreateDate(new Date(System.currentTimeMillis()));
