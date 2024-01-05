@@ -1,16 +1,14 @@
 package ca.bc.gov.educ.api.studentgraduation.model.entity;
 
-import java.util.UUID;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-
-import org.hibernate.annotations.Immutable;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.Immutable;
+
+import java.util.UUID;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -41,8 +39,8 @@ public class TranscriptMessageEntity extends BaseEntity {
 	@Column(name = "AD_IB_PROGRAM_MESSAGE", nullable = false)
     private String adIBProgramMessage;
 	
-	@Column(name = "PROGRAM_CADRE", nullable = false)
-    private String programCadre;
+	@Column(name = "FRENCH_IMMERSION_MESSAGE", nullable = false)
+    private String frenchImmersionMessage;
 	
 	@Column(name = "CAREER_PROGRAM_MESSAGE", nullable = false)
     private String careerProgramMessage;
