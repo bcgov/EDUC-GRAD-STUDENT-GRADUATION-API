@@ -1,9 +1,10 @@
 package ca.bc.gov.educ.api.studentgraduation.controller;
 
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
-
+import ca.bc.gov.educ.api.studentgraduation.model.dto.TranscriptMessage;
+import ca.bc.gov.educ.api.studentgraduation.service.TranscriptMessageService;
+import ca.bc.gov.educ.api.studentgraduation.util.GradValidation;
+import ca.bc.gov.educ.api.studentgraduation.util.MessageHelper;
+import ca.bc.gov.educ.api.studentgraduation.util.ResponseHelper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -11,11 +12,9 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import ca.bc.gov.educ.api.studentgraduation.model.dto.TranscriptMessage;
-import ca.bc.gov.educ.api.studentgraduation.service.TranscriptMessageService;
-import ca.bc.gov.educ.api.studentgraduation.util.GradValidation;
-import ca.bc.gov.educ.api.studentgraduation.util.MessageHelper;
-import ca.bc.gov.educ.api.studentgraduation.util.ResponseHelper;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -47,7 +46,7 @@ public class TranscriptMessageControllerTest {
 		obj.setGradDateMessage("GD");
 		obj.setHonourNote("Y");
 		obj.setGradMainMessage("abcd");
-		obj.setProgramCadre("PR");
+		obj.setFrenchImmersionMessage("PR");
 		obj.setCreateUser("GRADUATION");
 		obj.setUpdateUser("GRADUATION");
 		obj.setCreateDate(new Date(System.currentTimeMillis()));
@@ -61,7 +60,7 @@ public class TranscriptMessageControllerTest {
 		obj.setGradDateMessage("GD");
 		obj.setHonourNote("Y");
 		obj.setGradMainMessage("abcd");
-		obj.setProgramCadre("PR");
+		obj.setFrenchImmersionMessage("PR");
 		obj.setCreateUser("GRADUATION");
 		obj.setUpdateUser("GRADUATION");
 		obj.setCreateDate(new Date(System.currentTimeMillis()));
@@ -84,7 +83,7 @@ public class TranscriptMessageControllerTest {
 		obj.setGradDateMessage("GD");
 		obj.setHonourNote("Y");
 		obj.setGradMainMessage("abcd");
-		obj.setProgramCadre("PR");
+		obj.setFrenchImmersionMessage("PR");
 		obj.setCreateUser("GRADUATION");
 		obj.setUpdateUser("GRADUATION");
 		obj.setCreateDate(new Date(System.currentTimeMillis()));

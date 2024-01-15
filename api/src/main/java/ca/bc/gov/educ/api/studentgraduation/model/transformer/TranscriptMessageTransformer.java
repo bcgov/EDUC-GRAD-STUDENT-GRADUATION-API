@@ -1,15 +1,14 @@
 package ca.bc.gov.educ.api.studentgraduation.model.transformer;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
+import ca.bc.gov.educ.api.studentgraduation.model.dto.TranscriptMessage;
+import ca.bc.gov.educ.api.studentgraduation.model.entity.TranscriptMessageEntity;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import ca.bc.gov.educ.api.studentgraduation.model.dto.TranscriptMessage;
-import ca.bc.gov.educ.api.studentgraduation.model.entity.TranscriptMessageEntity;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 
 @Component
@@ -27,13 +26,13 @@ public class TranscriptMessageTransformer {
         if (transcriptMessageEntity.isPresent())
             cae = transcriptMessageEntity.get();
 
-        return modelMapper.map(cae, TranscriptMessage.class);
+        return transformToDTO(cae);
     }
 
 	public List<TranscriptMessage> transformToDTO (Iterable<TranscriptMessageEntity> gradMessagingEntities ) {
 		List<TranscriptMessage> gradMessagingList = new ArrayList<>();
         for (TranscriptMessageEntity gradMessagingEntity : gradMessagingEntities) {
-        	TranscriptMessage gradMessaging = modelMapper.map(gradMessagingEntity, TranscriptMessage.class);            
+        	TranscriptMessage gradMessaging = transformToDTO(gradMessagingEntity);
         	gradMessagingList.add(gradMessaging);
         }
         return gradMessagingList;
