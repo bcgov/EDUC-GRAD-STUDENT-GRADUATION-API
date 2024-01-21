@@ -13,5 +13,5 @@
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=bcgov_EDUC-GRAD-STUDENT-GRADUATION-API&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=bcgov_EDUC-GRAD-STUDENT-GRADUATION-API) &nbsp;
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=bcgov_EDUC-GRAD-STUDENT-GRADUATION-API&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=bcgov_EDUC-GRAD-STUDENT-GRADUATION-API) &nbsp;
 
-# EDUC-GRAD-STUDENT-GRADUATION-API &nbsp; ![GitHub repo size](https://img.shields.io/github/repo-size/bcgov/EDUC-GRAD-STUDENT-GRADUATION-API)
+# EDUC-GRAD-STUDENT-GRADUATION-API &nbsp; ![GitHub repo size](https://img.shields.io/github/repo-size/bcgov/EDUC-GRAD-STUDENT-GRADUATION-API) ![GitHub Tag](https://img.shields.io/github/v/tag/bcgov/EDUC-GRAD-STUDENT-GRADUATION-API)
 
