@@ -52,24 +52,8 @@ PARSER_CONFIG="
 echo Creating config map "$APP_NAME"-config-map
 oc create -n "$GRAD_NAMESPACE"-"$envValue" configmap "$APP_NAME"-config-map \
   --from-literal=APP_LOG_LEVEL="$APP_LOG_LEVEL" \
-  --from-literal=BASELINE_ON_MIGRATE="true" \
-  --from-literal=CRON_SCHEDULED_GRAD_TO_TRAX_EVENTS="0 0/5 * * * *" \
-  --from-literal=CRON_SCHEDULED_GRAD_TO_TRAX_EVENTS_LOCK_AT_LEAST_FOR="PT1M" \
-  --from-literal=CRON_SCHEDULED_GRAD_TO_TRAX_EVENTS_LOCK_AT_MOST_FOR="PT5M" \
-  --from-literal=CRON_SCHEDULED_GRAD_TO_TRAX_EVENTS_THRESHOLD="1000" \
-  --from-literal=CRON_SCHEDULED_TRAX_TO_GRAD_EVENTS="0 0/5 * * * *" \
-  --from-literal=CRON_SCHEDULED_TRAX_TO_GRAD_EVENTS_LOCK_AT_LEAST_FOR="PT1M" \
-  --from-literal=CRON_SCHEDULED_TRAX_TO_GRAD_EVENTS_LOCK_AT_MOST_FOR="PT5M" \
-  --from-literal=CRON_SCHEDULED_TRAX_TO_GRAD_EVENTS_THRESHOLD="1000" \
-  --from-literal=CRON_SCHEDULED_TRIGGER_TRAX_UPDATES="0 0/20 * * * *" \
-  --from-literal=CRON_SCHEDULED_TRIGGER_TRAX_UPDATES_LOCK_AT_LEAST_FOR="PT1M" \
-  --from-literal=CRON_SCHEDULED_TRIGGER_TRAX_UPDATES_LOCK_AT_MOST_FOR="PT20M" \
-  --from-literal=CRON_SCHEDULED_TRIGGER_TRAX_UPDATES_THRESHOLD="4000" \
   --from-literal=ENABLE_FLYWAY="true" \
-  --from-literal=ENABLE_GET_STUDENT_MASTER_ONLY="false" \
-  --from-literal=ENABLE_TRAX_UPDATE="true" \
-  --from-literal=KEYCLOAK_TOKEN_URL="https://soam-$envValue.apps.silver.devops.gov.bc.ca/" \
-  --from-literal=MAX_RETRY_ATTEMPTS="3" \
+  --from-literal=GRAD_PROGRAM_API="http://educ-grad-program-api.$GRAD_NAMESPACE-$envValue.svc.cluster.local:8080/" \
   --dry-run=client -o yaml | oc apply -f -
 
 echo Creating config map "$APP_NAME"-flb-sc-config-map
