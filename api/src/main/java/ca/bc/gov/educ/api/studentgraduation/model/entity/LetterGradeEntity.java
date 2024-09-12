@@ -4,11 +4,9 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-
-import org.hibernate.annotations.Immutable;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.Immutable;
 
 import java.util.Date;
 
@@ -43,5 +41,8 @@ public class LetterGradeEntity extends BaseEntity {
 
 	@Column(name = "EXPIRY_DATE", nullable = true)
 	private Date expiryDate;
+
+	@Column(name = "EFFECTIVE_DATE", nullable = true)
+	private Date effectiveDate;
 
 }

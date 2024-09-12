@@ -1,11 +1,9 @@
 package ca.bc.gov.educ.api.studentgraduation.model.dto;
 
-import org.springframework.stereotype.Component;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.stereotype.Component;
 
-import jakarta.persistence.Column;
 import java.util.Date;
 
 @Data
@@ -21,6 +19,7 @@ public class LetterGrade extends BaseModel {
 	private Integer percentRangeHigh;
 	private Integer percentRangeLow;
 	private Date expiryDate;
+	private Date effectiveDate;
 
 	@Override
 	public String toString() {
@@ -33,6 +32,7 @@ public class LetterGrade extends BaseModel {
 				", percentRangeHigh=" + percentRangeHigh +
 				", percentRangeLow=" + percentRangeLow +
 				", expiryDate=" + expiryDate +
+				", effectiveDate=" + effectiveDate +
 				'}';
 	}
 }
