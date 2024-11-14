@@ -52,7 +52,10 @@ public class StudentUndoCompletionReasonService {
 		long start1 = System.nanoTime();
 		List<StudentUndoCompletionReasonEntity> entities = studentUndoCompletionReasonRepository.findByGraduationStudentRecordID(studentID);
 		long end1 = System.nanoTime();
-		logger.debug("findByGraduationStudentRecordID elapsed Time in nano seconds: "+ (end1-start1));
+		long totalTime = (end1-start1)/1000000;
+		if(totalTime > 1000){
+			logger.debug("findByGraduationStudentRecordID took longer than 1s: " + totalTime);
+		}
 	    return studentUndoCompletionReasonTransformer.transformToDTO(entities);
 	}
 
