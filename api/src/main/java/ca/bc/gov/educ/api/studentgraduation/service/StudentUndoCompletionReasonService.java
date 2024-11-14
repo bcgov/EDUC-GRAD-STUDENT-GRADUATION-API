@@ -53,10 +53,17 @@ public class StudentUndoCompletionReasonService {
 		List<StudentUndoCompletionReasonEntity> entities = studentUndoCompletionReasonRepository.findByGraduationStudentRecordID(studentID);
 		long end1 = System.nanoTime();
 		long totalTime = (end1-start1)/1000000;
-		if(totalTime > 1000){
-			logger.debug("findByGraduationStudentRecordID took longer than 1s: " + totalTime);
+		if(totalTime > 500){
+			logger.debug("studentUndoCompletionReasonRepository.findByGraduationStudentRecordID took longer than 500ms: " + totalTime);
 		}
-	    return studentUndoCompletionReasonTransformer.transformToDTO(entities);
+		long start2 = System.nanoTime();
+		List<StudentUndoCompletionReason> studentUndoCompletionReasons = studentUndoCompletionReasonTransformer.transformToDTO(entities);
+	    long end2 = System.nanoTime();
+		long totalTime2 = (end2-start2)/1000000;
+		if(totalTime2 > 500){
+			logger.debug("studentUndoCompletionReasonTransformer.transformToDTO took longer than 500ms: " + totalTime2);
+		}
+		return studentUndoCompletionReasons;
 	}
 
 	public StudentUndoCompletionReason createStudentUndoCompletionReason(@Valid StudentUndoCompletionReason studentUndoCompletionReason) {

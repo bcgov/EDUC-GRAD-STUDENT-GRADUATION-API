@@ -65,7 +65,14 @@ public class UndoCompletionReasonController {
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
     public ResponseEntity<List<StudentUndoCompletionReason>> getAllStudentUndoCompletionReasonsList(@PathVariable String studentID) { 
     	logger.debug("getAllStudentUndoCompletionReasonsList : ");
-        return response.GET(studentUndoCompletionReasonService.getAllStudentUndoCompletionReasonsList(UUID.fromString(studentID)));
+		long start1 = System.nanoTime();
+		ResponseEntity<List<StudentUndoCompletionReason>> responseEntity = response.GET(studentUndoCompletionReasonService.getAllStudentUndoCompletionReasonsList(UUID.fromString(studentID)));
+		long end1 = System.nanoTime();
+		long totalTime = (end1-start1)/1000000;
+		if(totalTime > 500){
+			logger.debug("Controller getAllStudentUndoCompletionReasonsList took longer than 500ms: " + totalTime);
+		}
+		return responseEntity;
     }
     
     @PostMapping(EducGradStudentGraduationApiConstants.GET_ALL_STUDENT_UNGRAD_MAPPING)
