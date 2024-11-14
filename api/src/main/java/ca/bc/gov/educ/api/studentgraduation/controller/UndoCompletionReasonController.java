@@ -66,11 +66,18 @@ public class UndoCompletionReasonController {
     public ResponseEntity<List<StudentUndoCompletionReason>> getAllStudentUndoCompletionReasonsList(@PathVariable String studentID) { 
     	logger.debug("getAllStudentUndoCompletionReasonsList : ");
 		long start1 = System.nanoTime();
-		ResponseEntity<List<StudentUndoCompletionReason>> responseEntity = response.GET(studentUndoCompletionReasonService.getAllStudentUndoCompletionReasonsList(UUID.fromString(studentID)));
+		List<StudentUndoCompletionReason> studentUndoCompletionReasons = studentUndoCompletionReasonService.getAllStudentUndoCompletionReasonsList(UUID.fromString(studentID));
 		long end1 = System.nanoTime();
 		long totalTime = (end1-start1)/1000000;
 		if(totalTime > 500){
-			logger.debug("Controller getAllStudentUndoCompletionReasonsList took longer than 500ms: " + totalTime);
+			logger.debug("Controller Level: studentUndoCompletionReasonService.getAllStudentUndoCompletionReasonsList took longer than 500ms: " + totalTime);
+		}
+		long start2 = System.nanoTime();
+		ResponseEntity<List<StudentUndoCompletionReason>> responseEntity = response.GET(studentUndoCompletionReasons);
+		long end2 = System.nanoTime();
+		long totalTime2 = (end2-start2)/1000000;
+		if(totalTime2 > 500){
+			logger.debug("Controller Level: response.GET took longer than 500ms: " + totalTime2);
 		}
 		return responseEntity;
     }
