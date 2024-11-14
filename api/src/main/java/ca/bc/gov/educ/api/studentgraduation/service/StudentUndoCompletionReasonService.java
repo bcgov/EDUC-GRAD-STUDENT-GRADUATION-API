@@ -49,7 +49,11 @@ public class StudentUndoCompletionReasonService {
 
     @Transactional
     public List<StudentUndoCompletionReason> getAllStudentUndoCompletionReasonsList(UUID studentID) {
-	    return studentUndoCompletionReasonTransformer.transformToDTO(studentUndoCompletionReasonRepository.findByGraduationStudentRecordID(studentID));
+		long start1 = System.nanoTime();
+		List<StudentUndoCompletionReasonEntity> entities = studentUndoCompletionReasonRepository.findByGraduationStudentRecordID(studentID);
+		long end1 = System.nanoTime();
+		logger.debug("findByGraduationStudentRecordID elapsed Time in nano seconds: "+ (end1-start1));
+	    return studentUndoCompletionReasonTransformer.transformToDTO(entities);
 	}
 
 	public StudentUndoCompletionReason createStudentUndoCompletionReason(@Valid StudentUndoCompletionReason studentUndoCompletionReason) {
