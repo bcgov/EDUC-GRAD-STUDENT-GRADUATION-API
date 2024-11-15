@@ -7,6 +7,7 @@ import ca.bc.gov.educ.api.studentgraduation.model.transformer.UndoCompletionReas
 import ca.bc.gov.educ.api.studentgraduation.repository.StudentUndoCompletionReasonRepository;
 import ca.bc.gov.educ.api.studentgraduation.repository.UndoCompletionReasonRepository;
 import ca.bc.gov.educ.api.studentgraduation.util.GradValidation;
+import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Log4j2
 public class UndoCompletionReasonService {
 
 	@Autowired
@@ -46,7 +48,14 @@ public class UndoCompletionReasonService {
 
 	@Transactional
 	public List<UndoCompletionReason> getAllUndoCompletionReasonCodeList() {
-		return undoCompletionReasonTransformer.transformToDTO(undoCompletionReasonRepository.findAll());
+		long start1 = System.nanoTime();
+		List<UndoCompletionReasonEntity> undoCompletionReasonEntities = undoCompletionReasonRepository.findAll();
+		long end1 = System.nanoTime();
+		long totalTime = (end1-start1)/1000000;
+		if(totalTime > 500){
+			log.debug("Database: undoCompletionReasonRepository.findAll() took longer than 500ms: " + totalTime);
+		}
+		return undoCompletionReasonTransformer.transformToDTO(undoCompletionReasonEntities);
 	}
 
 	@Transactional
