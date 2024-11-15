@@ -53,8 +53,8 @@ public class UndoCompletionReasonService {
 		List<UndoCompletionReasonEntity> undoCompletionReasonEntities = undoCompletionReasonRepository.findAll();
 		long end1 = System.nanoTime();
 		long totalTime = (end1-start1)/1000000;
-		if(totalTime > 250){
-			logger.debug("Database: undoCompletionReasonRepository.findAll() took longer than 250ms: " + totalTime);
+		if(totalTime > 1000){
+			logger.debug("Database: undoCompletionReasonRepository.findAll() took longer than 1s: " + totalTime);
 		}
 		long start2 = System.nanoTime();
 		List<UndoCompletionReason> undoCompletionReasons = undoCompletionReasonTransformer.transformToDTO(undoCompletionReasonEntities);
