@@ -7,8 +7,9 @@ import ca.bc.gov.educ.api.studentgraduation.model.transformer.UndoCompletionReas
 import ca.bc.gov.educ.api.studentgraduation.repository.StudentUndoCompletionReasonRepository;
 import ca.bc.gov.educ.api.studentgraduation.repository.UndoCompletionReasonRepository;
 import ca.bc.gov.educ.api.studentgraduation.util.GradValidation;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Slf4j
 public class UndoCompletionReasonService {
 
 	@Autowired
@@ -44,6 +44,7 @@ public class UndoCompletionReasonService {
 
 	private static final String CREATED_BY="createdBy";
 	private static final String CREATED_TIMESTAMP="createdTimestamp";
+	private static Logger logger = LoggerFactory.getLogger(UndoCompletionReasonService.class);
 
 
 	@Transactional
@@ -53,14 +54,14 @@ public class UndoCompletionReasonService {
 		long end1 = System.nanoTime();
 		long totalTime = (end1-start1)/1000000;
 		if(totalTime > 500){
-			log.debug("Database: undoCompletionReasonRepository.findAll() took longer than 500ms: " + totalTime);
+			logger.debug("Database: undoCompletionReasonRepository.findAll() took longer than 500ms: " + totalTime);
 		}
 		long start2 = System.nanoTime();
 		List<UndoCompletionReason> undoCompletionReasons = undoCompletionReasonTransformer.transformToDTO(undoCompletionReasonEntities);
 		long end2 = System.nanoTime();
 		long totalTime2 = (end2-start2)/1000000;
 		if(totalTime2 > 500){
-			log.debug("DTO Transform: undoCompletionReasonTransformer.transformToDTO took longer than 500ms: " + totalTime2);
+			logger.debug("DTO Transform: undoCompletionReasonTransformer.transformToDTO took longer than 500ms: " + totalTime2);
 		}
 		return undoCompletionReasons;
 	}

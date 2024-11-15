@@ -104,8 +104,15 @@ public class UndoCompletionReasonController {
 	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "OK"),
 			@ApiResponse(responseCode = "204", description = "NO CONTENT.") })
 	public ResponseEntity<List<UndoCompletionReason>> getAllUndoCompletionReasonCodeList() {
-		logger.debug("getAllUndoCompletionReasonCodeList : ");
-		return response.GET(ungradReasonService.getAllUndoCompletionReasonCodeList());
+		logger.debug("getAllStudentUndoCompletionReasonsList : ");
+		long start1 = System.nanoTime();
+		ResponseEntity<List<UndoCompletionReason>> responseEntity = response.GET(ungradReasonService.getAllUndoCompletionReasonCodeList());
+		long end1 = System.nanoTime();
+		long totalTime = (end1-start1)/1000000;
+		if(totalTime > 500){
+			logger.debug("Controller Level: response.GET(ungradReasonService.getAllUndoCompletionReasonCodeList()) took longer than 500ms: " + totalTime);
+		}
+		return responseEntity;
 	}
 
 	@GetMapping(EducGradStudentGraduationApiConstants.GET_ALL_UNGRAD_BY_CODE_MAPPING)
