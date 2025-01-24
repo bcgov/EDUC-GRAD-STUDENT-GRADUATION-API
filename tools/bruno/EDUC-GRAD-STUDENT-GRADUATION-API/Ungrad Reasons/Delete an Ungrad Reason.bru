@@ -1,0 +1,15 @@
+meta {
+  name: Delete an Ungrad Reason
+  type: http
+  seq: 7
+}
+
+delete {
+  url: {{baseUrl}}/api/v1/studentgraduation/undocompletion/undocompletionreason/:reasonCode
+  body: none
+  auth: none
+}
+
+params:path {
+  reasonCode: 
+}

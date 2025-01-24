@@ -1,0 +1,15 @@
+meta {
+  name: Find a Specific Letter Grade
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/api/v1/studentgraduation/lgSc/lettergrade/:letterGrade
+  body: none
+  auth: none
+}
+
+params:path {
+  letterGrade: 
+}
