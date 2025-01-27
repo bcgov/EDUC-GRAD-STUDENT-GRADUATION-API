@@ -1,0 +1,16 @@
+meta {
+  name: Find a Grad Messaging
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/v1/studentgraduation/transcript/gradmessages/pgmCode/:pgmCode/msgType/:msgType
+  body: none
+  auth: none
+}
+
+params:path {
+  pgmCode: 
+  msgType: 
+}
