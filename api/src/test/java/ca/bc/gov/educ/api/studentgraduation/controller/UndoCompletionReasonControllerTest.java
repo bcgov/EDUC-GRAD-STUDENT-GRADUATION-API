@@ -23,7 +23,7 @@ import ca.bc.gov.educ.api.studentgraduation.util.ResponseHelper;
 
 @RunWith(MockitoJUnitRunner.class)
 @ExtendWith(MockitoExtension.class)
-public class UndoCompletionReasonControllerTest {
+class UndoCompletionReasonControllerTest {
 
     @Mock
     private StudentUndoCompletionReasonService studentUndoCompletionReasonService;
@@ -41,7 +41,7 @@ public class UndoCompletionReasonControllerTest {
     private UndoCompletionReasonController ungradReasonController;
 
     @Test
-	public void testGetAllUndoCompletionReasonCodeList() {
+	void testGetAllUndoCompletionReasonCodeList() {
 		List<UndoCompletionReason> gradUndoCompletionReasonList = new ArrayList<>();
 		UndoCompletionReason obj = new UndoCompletionReason();
 		obj.setCode("DC");
@@ -65,7 +65,7 @@ public class UndoCompletionReasonControllerTest {
 	}
 	
 	@Test
-	public void testGetSpecificUndoCompletionReasonCode() {
+	void testGetSpecificUndoCompletionReasonCode() {
 		String reasonCode = "DC";
 		UndoCompletionReason obj = new UndoCompletionReason();
 		obj.setCode("DC");
@@ -80,7 +80,7 @@ public class UndoCompletionReasonControllerTest {
 	}
 	
 	@Test
-	public void testGetSpecificUndoCompletionReasonCode_noContent() {
+	void testGetSpecificUndoCompletionReasonCode_noContent() {
 		String reasonCode = "AB";	
 		Mockito.when(ungradReasonService.getSpecificUndoCompletionReasonCode(reasonCode)).thenReturn(null);
 		ungradReasonController.getSpecificUndoCompletionReasonCode(reasonCode);
@@ -89,7 +89,7 @@ public class UndoCompletionReasonControllerTest {
 	
 
     @Test
-    public void testGetAllStudentUndoCompletionReasonsList() {
+    void testGetAllStudentUndoCompletionReasonsList() {
         // UUID
         final UUID studentID = UUID.randomUUID();
         // Ungrad Reasons
@@ -118,7 +118,7 @@ public class UndoCompletionReasonControllerTest {
     }
 
     @Test
-    public void testCreateGradStudentUndoCompletionReason() {
+    void testCreateGradStudentUndoCompletionReason() {
         // UUID
         final UUID studentID = UUID.randomUUID();
         // Ungrad Reasons
@@ -137,7 +137,7 @@ public class UndoCompletionReasonControllerTest {
     }
     
     @Test
-	public void testCreateUndoCompletionReason() {
+	void testCreateUndoCompletionReason() {
 		UndoCompletionReason obj = new UndoCompletionReason();
 		obj.setCode("DC");
 		obj.setDescription("Data Correction by School");
@@ -151,7 +151,7 @@ public class UndoCompletionReasonControllerTest {
 	}
 	
 	@Test
-	public void testUpdateUndoCompletionReason() {
+	void testUpdateUndoCompletionReason() {
 		UndoCompletionReason obj = new UndoCompletionReason();
 		obj.setCode("DC");
 		obj.setDescription("Data Correction by School");
@@ -165,7 +165,7 @@ public class UndoCompletionReasonControllerTest {
 	}
 	
 	@Test
-	public void testDeleteUndoCompletionReason() {
+	void testDeleteUndoCompletionReason() {
 		String statusCode = "DC";
 		Mockito.when(ungradReasonService.deleteUndoCompletionReason(statusCode)).thenReturn(1);
 		ungradReasonController.deleteUndoCompletionReason(statusCode);

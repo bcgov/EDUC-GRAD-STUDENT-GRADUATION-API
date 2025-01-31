@@ -18,7 +18,7 @@ import java.util.List;
 
 
 @ExtendWith(MockitoExtension.class)
-public class TranscriptMessageControllerTest {
+class TranscriptMessageControllerTest {
 
 	@Mock
 	private TranscriptMessageService transcriptMessageService;
@@ -36,7 +36,7 @@ public class TranscriptMessageControllerTest {
 	MessageHelper messagesHelper;	
 	
 	@Test
-	public void testGetAllMessagingCodeList() {
+	void testGetAllMessagingCodeList() {
 		List<TranscriptMessage> gradMessagingList = new ArrayList<>();
 		TranscriptMessage obj = new TranscriptMessage();
 		obj.setProgramCode("2018-EN");
@@ -72,7 +72,7 @@ public class TranscriptMessageControllerTest {
 	}
 	
 	@Test
-	public void testGetSpecificMessagingCode() {
+	void testGetSpecificMessagingCode() {
 		String programCode = "2018-EN";
 		String msgType = "GRADUATION";
 		TranscriptMessage obj = new TranscriptMessage();
@@ -94,7 +94,7 @@ public class TranscriptMessageControllerTest {
 	}
 	
 	@Test
-	public void testGetSpecificMessagingCode_noContent() {
+	void testGetSpecificMessagingCode_noContent() {
 		String programCode = "2018-ENF";
 		String msgType = "GRADUATION";	
 		Mockito.when(transcriptMessageService.getSpecificTranscriptMessageCode(programCode,msgType)).thenReturn(null);

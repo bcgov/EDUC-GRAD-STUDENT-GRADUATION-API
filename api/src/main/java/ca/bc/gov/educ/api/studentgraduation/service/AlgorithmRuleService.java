@@ -2,7 +2,6 @@ package ca.bc.gov.educ.api.studentgraduation.service;
 
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -11,9 +10,9 @@ import ca.bc.gov.educ.api.studentgraduation.model.transformer.TranscriptMessageT
 import ca.bc.gov.educ.api.studentgraduation.repository.TranscriptMessageRepository;
 import ca.bc.gov.educ.api.studentgraduation.util.EducGradStudentGraduationApiConstants;
 import ca.bc.gov.educ.api.studentgraduation.util.ThreadLocalStateUtil;
+import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -29,42 +28,31 @@ import ca.bc.gov.educ.api.studentgraduation.util.GradValidation;
 
 
 @Service
+@AllArgsConstructor
 public class AlgorithmRuleService {
 
-    @Autowired
     private ProgramAlgorithmRuleTransformer programAlgorithmRuleTransformer;
     
-    @Autowired
     private ProgramAlgorithmRuleRepository programAlgorithmRuleRepository;
     
-    @Autowired
     private LetterGradeTransformer letterGradeTransformer;
     
-    @Autowired
-    private LetterGradeRepository letterGradeRepository; 
+    private LetterGradeRepository letterGradeRepository;
     
-    @Autowired
     private SpecialCaseTransformer specialCaseTransformer;
     
-    @Autowired
     private SpecialCaseRepository specialCaseRepository;
 
-	@Autowired
 	private TranscriptMessageTransformer transcriptMessageTransformer;
 
-	@Autowired
 	private TranscriptMessageRepository transcriptMessageRepository;
 
-	@Autowired
     WebClient webClient;
     
-    @Autowired
     RestTemplate restTemplate;
     
-    @Autowired
 	GradValidation validation;
 
-	@Autowired
 	EducGradStudentGraduationApiConstants constants;
 
     @SuppressWarnings("unused")
