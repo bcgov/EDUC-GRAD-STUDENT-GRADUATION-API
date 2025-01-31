@@ -20,7 +20,7 @@ import ca.bc.gov.educ.api.studentgraduation.util.ResponseHelper;
 
 
 @ExtendWith(MockitoExtension.class)
-public class LettergradeSpecialcaseControllerTest {
+class LettergradeSpecialcaseControllerTest {
 
 	@Mock
 	private LetterGradeService letterGradeService;
@@ -41,7 +41,7 @@ public class LettergradeSpecialcaseControllerTest {
 	MessageHelper messagesHelper;
 	
 	@Test
-	public void testGetAllLetterGrade() {
+	void testGetAllLetterGrade() {
 		List<LetterGrade> gradList = new ArrayList<>();
 		LetterGrade obj = new LetterGrade();
 		obj.setGrade("A");
@@ -57,7 +57,7 @@ public class LettergradeSpecialcaseControllerTest {
 	}
 	
 	@Test
-	public void testGetAllSpecialCase() {
+	void testGetAllSpecialCase() {
 		List<SpecialCase> gradList = new ArrayList<>();
 		SpecialCase obj = new SpecialCase();
 		obj.setSpCase("A");
@@ -74,7 +74,7 @@ public class LettergradeSpecialcaseControllerTest {
 	}
 	
 	@Test
-	public void testGetSpecificSpecialCase() {
+	void testGetSpecificSpecialCase() {
 		String specialCase="A";
 		SpecialCase obj = new SpecialCase();
 		obj.setSpCase("A");
@@ -85,7 +85,7 @@ public class LettergradeSpecialcaseControllerTest {
 	}
 	
 	@Test
-	public void testGetSpecificLetterGrade() {
+	void testGetSpecificLetterGrade() {
 		String letterGrade="AB";
 		LetterGrade obj = new LetterGrade();
 		obj.setGrade("AB");

@@ -5,9 +5,9 @@ import java.util.UUID;
 
 import jakarta.validation.Valid;
 
+import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -41,20 +41,17 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 @RestController
 @RequestMapping(EducGradStudentGraduationApiConstants.GRAD_STUDENT_GRADUATION_UNGRAD_REASON_CONTROLLER_ROOT_MAPPING)
 @OpenAPIDefinition(info = @Info(title = "API for Student and General Ungrad Reasons.", description = "This API is for Student and General Ungrad Reasons endpoints.", version = "1"), security = {@SecurityRequirement(name = "OAUTH2", scopes = {"READ_GRAD_STUDENT_UNGRAD_REASONS_DATA"})})
+@AllArgsConstructor
 public class UndoCompletionReasonController {
 
     private static Logger logger = LoggerFactory.getLogger(UndoCompletionReasonController.class);
 
-    @Autowired
     StudentUndoCompletionReasonService studentUndoCompletionReasonService;
     
-    @Autowired
 	UndoCompletionReasonService ungradReasonService;
     
-    @Autowired
 	GradValidation validation;
     
-    @Autowired
 	ResponseHelper response;
     
     private static final String REASON_CODE="Reason Code";

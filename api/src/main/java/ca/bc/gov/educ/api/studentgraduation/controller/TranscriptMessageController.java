@@ -2,9 +2,9 @@ package ca.bc.gov.educ.api.studentgraduation.controller;
 
 import java.util.List;
 
+import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -32,15 +32,13 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 @OpenAPIDefinition(info = @Info(title = "API for Transcript Messages Data.", description = "This API is for Transcript Messages Data.", version = "1"), security = {
 		@SecurityRequirement(name = "OAUTH2", scopes = { "READ_GRAD_UNGRAD_CODE_DATA",
 				"READ_GRAD_MESSEGING_CODE_DATA" }) })
+@AllArgsConstructor
 public class TranscriptMessageController {
 
-	@Autowired
 	private TranscriptMessageService transcriptMessageService;
 	
-	@Autowired
 	GradValidation validation;
 
-	@Autowired
 	ResponseHelper response;
 	    
 	private static Logger logger = LoggerFactory.getLogger(TranscriptMessageController.class);

@@ -2,9 +2,9 @@ package ca.bc.gov.educ.api.studentgraduation.controller;
 
 import java.util.List;
 
+import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -27,17 +27,15 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 @RestController
 @RequestMapping(EducGradStudentGraduationApiConstants.GRAD_STUDENT_GRADUATION_ALGO_CONTROLLER_ROOT_MAPPING)
 @OpenAPIDefinition(info = @Info(title = "API for Algorithm Rule Data.", description = "This API contains endpoints for Algorithm Rule data.", version = "1"), security = {@SecurityRequirement(name = "OAUTH2", scopes = {"READ_GRAD_SPECIAL_CASE_DATA","READ_GRAD_LETTER_GRADE_DATA"})})
+@AllArgsConstructor
 public class AlgorithmRuleController {
 
 	private static Logger logger = LoggerFactory.getLogger(AlgorithmRuleController.class);
 
-    @Autowired
     AlgorithmRuleService algorithmRuleService;
     
-    @Autowired
 	GradValidation validation;
     
-    @Autowired
 	ResponseHelper response;
     
 	@GetMapping(EducGradStudentGraduationApiConstants.GET_ALGORITHM_RULES_MAIN_PROGRAM)

@@ -18,6 +18,8 @@ import ca.bc.gov.educ.api.studentgraduation.model.entity.SpecialCaseCodeEntity;
 import ca.bc.gov.educ.api.studentgraduation.repository.SpecialCaseRepository;
 import ca.bc.gov.educ.api.studentgraduation.util.GradValidation;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -47,7 +49,7 @@ public class SpecialCaseServiceTest {
 		obj.setPassFlag("N");
 		gradSpecialCaseList.add(obj);
 		Mockito.when(gradSpecialCaseRepository.findAll()).thenReturn(gradSpecialCaseList);
-		specialCaseService.getAllSpecialCaseList();
+		assertDoesNotThrow(() -> specialCaseService.getAllSpecialCaseList());
 	}
 	
 	@Test

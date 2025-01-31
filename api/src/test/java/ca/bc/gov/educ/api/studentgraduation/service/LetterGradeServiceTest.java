@@ -20,6 +20,8 @@ import ca.bc.gov.educ.api.studentgraduation.model.entity.LetterGradeEntity;
 import ca.bc.gov.educ.api.studentgraduation.repository.LetterGradeRepository;
 import ca.bc.gov.educ.api.studentgraduation.util.GradValidation;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -51,7 +53,7 @@ public class LetterGradeServiceTest {
 		obj.setPassFlag("N");
 		gradLettergradeList.add(obj);
 		Mockito.when(letterGradeRepository.findAll()).thenReturn(gradLettergradeList);
-		letterGradeService.getAllLetterGradesList();
+		assertDoesNotThrow(() -> letterGradeService.getAllLetterGradesList());
 	}
 	
 	@Test

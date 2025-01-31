@@ -8,9 +8,9 @@ import java.util.UUID;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
+import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -24,24 +24,19 @@ import ca.bc.gov.educ.api.studentgraduation.util.GradValidation;
 
 
 @Service
+@AllArgsConstructor
 public class StudentUndoCompletionReasonService {
 
-    @Autowired
     private StudentUndoCompletionReasonTransformer studentUndoCompletionReasonTransformer;
     
-    @Autowired
-    private StudentUndoCompletionReasonRepository studentUndoCompletionReasonRepository; 
+    private StudentUndoCompletionReasonRepository studentUndoCompletionReasonRepository;
     
-    @Autowired
     private UndoCompletionReasonService undoCompletionReasonService;
     
-    @Autowired
     WebClient webClient;
     
-    @Autowired
     RestTemplate restTemplate;
     
-    @Autowired
 	GradValidation validation;
 
     @SuppressWarnings("unused")

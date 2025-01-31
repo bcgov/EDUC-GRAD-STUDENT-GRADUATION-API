@@ -4,9 +4,9 @@ package ca.bc.gov.educ.api.studentgraduation.service;
 import java.util.List;
 import java.util.Optional;
 
+import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ca.bc.gov.educ.api.studentgraduation.model.dto.SpecialCase;
@@ -16,15 +16,13 @@ import ca.bc.gov.educ.api.studentgraduation.repository.SpecialCaseRepository;
 import ca.bc.gov.educ.api.studentgraduation.util.GradValidation;
 
 @Service
+@AllArgsConstructor
 public class SpecialCaseService {
 
-    @Autowired
     private SpecialCaseTransformer specialCaseTransformer;
     
-    @Autowired
-    private SpecialCaseRepository specialCaseRepository; 
+    private SpecialCaseRepository specialCaseRepository;
     
-    @Autowired
 	GradValidation validation;
     
 

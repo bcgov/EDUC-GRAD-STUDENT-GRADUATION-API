@@ -75,12 +75,12 @@ public class AlgorithmRuleServiceTest {
 
     @BeforeClass
     public static void setup() {
-
+        //Placeholder method
     }
 
     @After
     public void tearDown() {
-
+        //Placeholder method
     }
 
     @Before
@@ -89,7 +89,7 @@ public class AlgorithmRuleServiceTest {
     }
 
     @Test
-    public void testGetAllAlgorithmDataList() throws Exception {
+    public void testGetAllAlgorithmDataList()  {
         String accessToken = "accessToken";
         GraduationProgramCode code = new GraduationProgramCode();
         code.setProgramCode("2018-EN");
@@ -108,7 +108,7 @@ public class AlgorithmRuleServiceTest {
 	@Test
 	public void testGetAlgorithmRulesList() {
 		// UUID
-        final UUID ID = UUID.randomUUID();
+        final UUID id = UUID.randomUUID();
         final String programCode1 = "2018-EN";
         final String programCode2 = "2018-FI";
 
@@ -116,7 +116,7 @@ public class AlgorithmRuleServiceTest {
         final List<ProgramAlgorithmRuleEntity> algorithmsRulesList = new ArrayList<>();
 
         final ProgramAlgorithmRuleEntity gradAlgorithmRule1 = new ProgramAlgorithmRuleEntity();
-        gradAlgorithmRule1.setProgramAlgoRuleID(ID);
+        gradAlgorithmRule1.setProgramAlgoRuleID(id);
         gradAlgorithmRule1.setGraduationProgramCode(programCode1);
         final AlgorithmRuleCodeEntity ruleCodeEntity = new AlgorithmRuleCodeEntity();
         ruleCodeEntity.setAlgoRuleCode("AB");
@@ -127,7 +127,7 @@ public class AlgorithmRuleServiceTest {
         algorithmsRulesList.add(gradAlgorithmRule1);
 
         final ProgramAlgorithmRuleEntity gradAlgorithmRule2 = new ProgramAlgorithmRuleEntity();
-        gradAlgorithmRule2.setProgramAlgoRuleID(ID);
+        gradAlgorithmRule2.setProgramAlgoRuleID(id);
         gradAlgorithmRule2.setGraduationProgramCode(programCode1);
         final AlgorithmRuleCodeEntity ruleCodeEntity2 = new AlgorithmRuleCodeEntity();
         ruleCodeEntity2.setAlgoRuleCode("AB");
@@ -138,7 +138,7 @@ public class AlgorithmRuleServiceTest {
         algorithmsRulesList.add(gradAlgorithmRule2);
 
         final ProgramAlgorithmRuleEntity gradAlgorithmRule3 = new ProgramAlgorithmRuleEntity();
-        gradAlgorithmRule3.setProgramAlgoRuleID(ID);
+        gradAlgorithmRule3.setProgramAlgoRuleID(id);
         gradAlgorithmRule3.setGraduationProgramCode(programCode1);
         final AlgorithmRuleCodeEntity ruleCodeEntity3 = new AlgorithmRuleCodeEntity();
         ruleCodeEntity3.setAlgoRuleCode("AB");
@@ -149,7 +149,7 @@ public class AlgorithmRuleServiceTest {
         algorithmsRulesList.add(gradAlgorithmRule3);
 
         final ProgramAlgorithmRuleEntity gradAlgorithmRule4 = new ProgramAlgorithmRuleEntity();
-        gradAlgorithmRule4.setProgramAlgoRuleID(ID);
+        gradAlgorithmRule4.setProgramAlgoRuleID(id);
         gradAlgorithmRule4.setGraduationProgramCode(programCode2);
         final AlgorithmRuleCodeEntity ruleCodeEntity4 = new AlgorithmRuleCodeEntity();
         ruleCodeEntity4.setAlgoRuleCode("AB");
@@ -163,8 +163,7 @@ public class AlgorithmRuleServiceTest {
 
         var result = algorithmRuleService.getAllAlgorithmRulesList();
 
-        assertThat(result).isNotNull();
-        assertThat(result.size()).isEqualTo(4);
+        assertThat(result).isNotNull().hasSize(4);
         assertThat(result.get(0).getAlgorithmRuleCode().getRuleImplementation()).isEqualTo(gradAlgorithmRule1.getAlgorithmRuleCode().getRuleImplementation());
         assertThat(result.get(1).getAlgorithmRuleCode().getRuleImplementation()).isEqualTo(gradAlgorithmRule2.getAlgorithmRuleCode().getRuleImplementation());
         assertThat(result.get(2).getAlgorithmRuleCode().getRuleImplementation()).isEqualTo(gradAlgorithmRule3.getAlgorithmRuleCode().getRuleImplementation());
@@ -174,14 +173,14 @@ public class AlgorithmRuleServiceTest {
 	@Test
 	public void testGetAlgorithmRulesList_WithProgram() {
 		// UUID
-        final UUID ID = UUID.randomUUID();
+        final UUID id = UUID.randomUUID();
         final String programCode1 = "2018-EN";
 
         // Student Certificate Types
         final List<ProgramAlgorithmRuleEntity> algorithmsRulesList = new ArrayList<>();
 
         final ProgramAlgorithmRuleEntity gradAlgorithmRule1 = new ProgramAlgorithmRuleEntity();
-        gradAlgorithmRule1.setProgramAlgoRuleID(ID);
+        gradAlgorithmRule1.setProgramAlgoRuleID(id);
         gradAlgorithmRule1.setGraduationProgramCode(programCode1);
         final AlgorithmRuleCodeEntity ruleCodeEntity = new AlgorithmRuleCodeEntity();
         ruleCodeEntity.setAlgoRuleCode("AB");
@@ -192,7 +191,7 @@ public class AlgorithmRuleServiceTest {
         algorithmsRulesList.add(gradAlgorithmRule1);
 
         final ProgramAlgorithmRuleEntity gradAlgorithmRule2 = new ProgramAlgorithmRuleEntity();
-        gradAlgorithmRule2.setProgramAlgoRuleID(ID);
+        gradAlgorithmRule2.setProgramAlgoRuleID(id);
         gradAlgorithmRule2.setGraduationProgramCode(programCode1);
         final AlgorithmRuleCodeEntity ruleCodeEntity2 = new AlgorithmRuleCodeEntity();
         ruleCodeEntity2.setAlgoRuleCode("AB");
@@ -203,7 +202,7 @@ public class AlgorithmRuleServiceTest {
         algorithmsRulesList.add(gradAlgorithmRule2);
 
         final ProgramAlgorithmRuleEntity gradAlgorithmRule3 = new ProgramAlgorithmRuleEntity();
-        gradAlgorithmRule3.setProgramAlgoRuleID(ID);
+        gradAlgorithmRule3.setProgramAlgoRuleID(id);
         gradAlgorithmRule3.setGraduationProgramCode(programCode1);
         final AlgorithmRuleCodeEntity ruleCodeEntity3 = new AlgorithmRuleCodeEntity();
         ruleCodeEntity3.setAlgoRuleCode("AB");
@@ -214,7 +213,7 @@ public class AlgorithmRuleServiceTest {
         algorithmsRulesList.add(gradAlgorithmRule3);
 
         final ProgramAlgorithmRuleEntity gradAlgorithmRule4 = new ProgramAlgorithmRuleEntity();
-        gradAlgorithmRule4.setProgramAlgoRuleID(ID);
+        gradAlgorithmRule4.setProgramAlgoRuleID(id);
         gradAlgorithmRule4.setGraduationProgramCode(programCode1);
         final AlgorithmRuleCodeEntity ruleCodeEntity4 = new AlgorithmRuleCodeEntity();
         ruleCodeEntity4.setAlgoRuleCode("AB");
@@ -228,8 +227,7 @@ public class AlgorithmRuleServiceTest {
 
         var result = algorithmRuleService.getAlgorithmRulesList(programCode1);
 
-        assertThat(result).isNotNull();
-        assertThat(result.size()).isEqualTo(4);
+        assertThat(result).isNotNull().hasSize(4);
         assertThat(result.get(0).getAlgorithmRuleCode().getRuleImplementation()).isEqualTo(gradAlgorithmRule1.getAlgorithmRuleCode().getRuleImplementation());
         assertThat(result.get(1).getAlgorithmRuleCode().getRuleImplementation()).isEqualTo(gradAlgorithmRule2.getAlgorithmRuleCode().getRuleImplementation());
         assertThat(result.get(2).getAlgorithmRuleCode().getRuleImplementation()).isEqualTo(gradAlgorithmRule3.getAlgorithmRuleCode().getRuleImplementation());
@@ -239,14 +237,14 @@ public class AlgorithmRuleServiceTest {
 	@Test
 	public void testGetAllAlgorithmData() {
 		// UUID
-        final UUID ID = UUID.randomUUID();
+        final UUID id = UUID.randomUUID();
         final String programCode1 = "2018-EN";
 
         // Student Certificate Types
         final List<ProgramAlgorithmRuleEntity> algorithmsRulesList = new ArrayList<>();
 
         final ProgramAlgorithmRuleEntity gradAlgorithmRule1 = new ProgramAlgorithmRuleEntity();
-        gradAlgorithmRule1.setProgramAlgoRuleID(ID);
+        gradAlgorithmRule1.setProgramAlgoRuleID(id);
         gradAlgorithmRule1.setGraduationProgramCode(programCode1);
         final AlgorithmRuleCodeEntity ruleCodeEntity = new AlgorithmRuleCodeEntity();
         ruleCodeEntity.setAlgoRuleCode("AB");
@@ -257,7 +255,7 @@ public class AlgorithmRuleServiceTest {
         algorithmsRulesList.add(gradAlgorithmRule1);
 
         final ProgramAlgorithmRuleEntity gradAlgorithmRule2 = new ProgramAlgorithmRuleEntity();
-        gradAlgorithmRule2.setProgramAlgoRuleID(ID);
+        gradAlgorithmRule2.setProgramAlgoRuleID(id);
         gradAlgorithmRule2.setGraduationProgramCode(programCode1);
         final AlgorithmRuleCodeEntity ruleCodeEntity2 = new AlgorithmRuleCodeEntity();
         ruleCodeEntity2.setAlgoRuleCode("AB");
@@ -268,7 +266,7 @@ public class AlgorithmRuleServiceTest {
         algorithmsRulesList.add(gradAlgorithmRule2);
 
         final ProgramAlgorithmRuleEntity gradAlgorithmRule3 = new ProgramAlgorithmRuleEntity();
-        gradAlgorithmRule3.setProgramAlgoRuleID(ID);
+        gradAlgorithmRule3.setProgramAlgoRuleID(id);
         gradAlgorithmRule3.setGraduationProgramCode(programCode1);
         final AlgorithmRuleCodeEntity ruleCodeEntity3 = new AlgorithmRuleCodeEntity();
         ruleCodeEntity3.setAlgoRuleCode("AB");
@@ -279,7 +277,7 @@ public class AlgorithmRuleServiceTest {
         algorithmsRulesList.add(gradAlgorithmRule3);
 
         final ProgramAlgorithmRuleEntity gradAlgorithmRule4 = new ProgramAlgorithmRuleEntity();
-        gradAlgorithmRule4.setProgramAlgoRuleID(ID);
+        gradAlgorithmRule4.setProgramAlgoRuleID(id);
         gradAlgorithmRule4.setGraduationProgramCode(programCode1);
         final AlgorithmRuleCodeEntity ruleCodeEntity4 = new AlgorithmRuleCodeEntity();
         ruleCodeEntity4.setAlgoRuleCode("AB");
