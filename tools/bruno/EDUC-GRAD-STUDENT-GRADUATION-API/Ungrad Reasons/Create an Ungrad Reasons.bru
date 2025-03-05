@@ -1,0 +1,15 @@
+meta {
+  name: Create an Ungrad Reasons
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/api/v1/studentgraduation/undocompletion/studentundocompletionreason/studentid/:studentID
+  body: json
+  auth: none
+}
+
+params:path {
+  studentID: 
+}

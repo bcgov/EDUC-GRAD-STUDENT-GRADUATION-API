@@ -1,0 +1,15 @@
+meta {
+  name: Find an Ungrad Reason by Ungrad Reasons Code
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/api/v1/studentgraduation/undocompletion/undocompletionreason/:reasonCode
+  body: none
+  auth: none
+}
+
+params:path {
+  reasonCode: 
+}
