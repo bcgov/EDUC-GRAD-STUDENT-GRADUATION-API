@@ -1,8 +1,9 @@
 package ca.bc.gov.educ.api.studentgraduation.util;
 
 public class ThreadLocalStateUtil {
-    private static ThreadLocal<String> transaction = new ThreadLocal<>();
-    private static ThreadLocal<String> user = new ThreadLocal<>();
+    private static InheritableThreadLocal<String> transaction = new InheritableThreadLocal<>();
+    private static InheritableThreadLocal<String> user = new InheritableThreadLocal<>();
+    private static InheritableThreadLocal<String> requestSource = new InheritableThreadLocal();
 
     /**
      * Set the current correlationID for this thread
@@ -40,8 +41,25 @@ public class ThreadLocalStateUtil {
         return user.get();
     }
 
+    /**
+     * Get the request source for this thread
+     *
+     * @return the request source
+     */
+    public static String getRequestSource() {
+        return requestSource.get();
+    }
+
+    /**
+     * Set the request source for this thread
+     */
+    public static void setRequestSource(String reqSource) {
+        requestSource.set(reqSource);
+    }
+
     public static void clear() {
         transaction.remove();
         user.remove();
+        requestSource.remove();
     }
 }
