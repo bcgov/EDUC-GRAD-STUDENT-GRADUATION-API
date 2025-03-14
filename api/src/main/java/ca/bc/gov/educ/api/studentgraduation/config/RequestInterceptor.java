@@ -13,8 +13,6 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.AsyncHandlerInterceptor;
-/*GRAD2-1899,  commenting the below line as this import is not in use and showing it as error*/
-//import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import java.time.Instant;
 import java.util.UUID;
@@ -22,11 +20,16 @@ import java.util.UUID;
 @Component
 public class RequestInterceptor implements AsyncHandlerInterceptor {
 
-	@Autowired
 	GradValidation validation;
+	EducGradStudentGraduationApiConstants constants;
+	LogHelper logHelper;
 
 	@Autowired
-	EducGradStudentGraduationApiConstants constants;
+	public RequestInterceptor(GradValidation validation, EducGradStudentGraduationApiConstants constants, LogHelper logHelper) {
+		this.validation = validation;
+		this.constants = constants;
+		this.logHelper = logHelper;
+	}
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -75,7 +78,7 @@ public class RequestInterceptor implements AsyncHandlerInterceptor {
 	 */
 	@Override
 	public void afterCompletion(@NonNull final HttpServletRequest request, final HttpServletResponse response, @NonNull final Object handler, final Exception ex) {
-		LogHelper.logServerHttpReqResponseDetails(request, response, constants.isSplunkLogHelperEnabled());
+		logHelper.logServerHttpReqResponseDetails(request, response, constants.isSplunkLogHelperEnabled());
 		// clear
 		ThreadLocalStateUtil.clear();
 	}
