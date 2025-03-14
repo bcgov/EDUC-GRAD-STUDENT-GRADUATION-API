@@ -4,26 +4,32 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.slf4j.MDC;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.lang.NonNull;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.stereotype.Component;
+
 import java.time.Instant;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Slf4j
+@Component
 public final class LogHelper {
   private static final ObjectMapper mapper = new ObjectMapper();
   private static final String EXCEPTION = "Exception ";
   JsonTransformer jsonTransformer;
-  private LogHelper() {
 
-  }
+    @Autowired
+    public LogHelper(JsonTransformer jsonTransformer) {
+        this.jsonTransformer = jsonTransformer;
+    }
 
-  public static void logServerHttpReqResponseDetails(@NonNull final HttpServletRequest request, final HttpServletResponse response, final boolean logging) {
+  public void logServerHttpReqResponseDetails(@NonNull final HttpServletRequest request, final HttpServletResponse response, final boolean logging) {
     if (!logging) return;
     try {
       final int status = response.getStatus();

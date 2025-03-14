@@ -4,6 +4,7 @@ import ca.bc.gov.educ.api.studentgraduation.util.EducGradStudentGraduationApiCon
 import ca.bc.gov.educ.api.studentgraduation.util.LogHelper;
 import ca.bc.gov.educ.api.studentgraduation.util.ThreadLocalStateUtil;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +12,6 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.ClientRequest;
 import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
 import reactor.netty.http.client.HttpClient;
 
 @Configuration
@@ -19,6 +19,12 @@ public class GradStudentGraduationConfig {
 
 	EducGradStudentGraduationApiConstants constants;
 	LogHelper logHelper;
+
+	@Autowired
+	public GradStudentGraduationConfig(EducGradStudentGraduationApiConstants constants, LogHelper logHelper) {
+		this.constants = constants;
+		this.logHelper = logHelper;
+	}
 
 	@Bean
 	public ModelMapper modelMapper() {
