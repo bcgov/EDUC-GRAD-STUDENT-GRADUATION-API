@@ -29,7 +29,8 @@
             src/main/java/ca/bc/gov/educ/api/studentgraduation/util/**,
             src/main/java/ca/bc/gov/educ/api/studentgraduation/repository/**,
             src/main/java/ca/bc/gov/educ/api/studentgraduation/config/**,
-            src/test/java/ca/bc/gov/educ/api/studentgraduation/**,
+            src/main/java/ca/bc/gov/educ/api/studentgraduation/controller/APIMetadataController.java,
+            src/test/java/ca/bc/gov/educ/api/studentgraduation/**
         </sonar.coverage.exclusions>
         <!--GRAD2-1899, upgrading to spring boot 3.0.2-->
         <java.version>18</java.version>
