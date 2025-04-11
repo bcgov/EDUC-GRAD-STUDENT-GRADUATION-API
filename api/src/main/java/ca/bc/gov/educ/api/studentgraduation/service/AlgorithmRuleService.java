@@ -107,10 +107,7 @@ public class AlgorithmRuleService {
 		List<StudentGraduationAlgorithmData> sList = new ArrayList<>();
 		List<GraduationProgramCode> pList = webClient.get()
 				.uri(constants.getProgramList())
-				.headers(h -> {
-					h.setBearerAuth(accessToken);
-					h.set(EducGradStudentGraduationApiConstants.CORRELATION_ID, ThreadLocalStateUtil.getCorrelationID());
-				})
+				.headers(h -> h.setBearerAuth(accessToken))
 				.retrieve()
 				.bodyToMono(new ParameterizedTypeReference<List<GraduationProgramCode>>(){})
 				.block();

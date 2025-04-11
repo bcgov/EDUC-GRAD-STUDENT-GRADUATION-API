@@ -13,19 +13,23 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.AsyncHandlerInterceptor;
-/*GRAD2-1899,  commenting the below line as this import is not in use and showing it as error*/
-//import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import java.time.Instant;
+import java.util.UUID;
 
 @Component
 public class RequestInterceptor implements AsyncHandlerInterceptor {
 
-	@Autowired
 	GradValidation validation;
+	EducGradStudentGraduationApiConstants constants;
+	LogHelper logHelper;
 
 	@Autowired
-	EducGradStudentGraduationApiConstants constants;
+	public RequestInterceptor(GradValidation validation, EducGradStudentGraduationApiConstants constants, LogHelper logHelper) {
+		this.validation = validation;
+		this.constants = constants;
+		this.logHelper = logHelper;
+	}
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -37,21 +41,30 @@ public class RequestInterceptor implements AsyncHandlerInterceptor {
 		validation.clear();
 		// correlationID
 		val correlationID = request.getHeader(EducGradStudentGraduationApiConstants.CORRELATION_ID);
-		if (correlationID != null) {
-			ThreadLocalStateUtil.setCorrelationID(correlationID);
+		ThreadLocalStateUtil.setCorrelationID(correlationID != null ? correlationID : UUID.randomUUID().toString());
+
+		//Request Source
+		val requestSource = request.getHeader(EducGradStudentGraduationApiConstants.REQUEST_SOURCE);
+		if(requestSource != null) {
+			ThreadLocalStateUtil.setRequestSource(requestSource);
 		}
 
-		// username
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if (auth instanceof JwtAuthenticationToken) {
-			JwtAuthenticationToken authenticationToken = (JwtAuthenticationToken) auth;
-			Jwt jwt = (Jwt) authenticationToken.getCredentials();
-			String username = JwtUtil.getName(jwt);
-			if (username != null) {
-				ThreadLocalStateUtil.setCurrentUser(username);
+		// Header userName
+		val userName = request.getHeader(EducGradStudentGraduationApiConstants.USER_NAME);
+		if (userName != null) {
+			ThreadLocalStateUtil.setCurrentUser(userName);
+		}
+		else {
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			if (auth instanceof JwtAuthenticationToken) {
+				JwtAuthenticationToken authenticationToken = (JwtAuthenticationToken) auth;
+				Jwt jwt = (Jwt) authenticationToken.getCredentials();
+				String username = JwtUtil.getName(jwt);
+				if (username != null) {
+					ThreadLocalStateUtil.setCurrentUser(username);
+				}
 			}
 		}
-
 		return true;
 	}
 
@@ -65,11 +78,7 @@ public class RequestInterceptor implements AsyncHandlerInterceptor {
 	 */
 	@Override
 	public void afterCompletion(@NonNull final HttpServletRequest request, final HttpServletResponse response, @NonNull final Object handler, final Exception ex) {
-		LogHelper.logServerHttpReqResponseDetails(request, response, constants.isSplunkLogHelperEnabled());
-		val correlationID = request.getHeader(EducGradStudentGraduationApiConstants.CORRELATION_ID);
-		if (correlationID != null) {
-			response.setHeader(EducGradStudentGraduationApiConstants.CORRELATION_ID, request.getHeader(EducGradStudentGraduationApiConstants.CORRELATION_ID));
-		}
+		logHelper.logServerHttpReqResponseDetails(request, response, constants.isSplunkLogHelperEnabled());
 		// clear
 		ThreadLocalStateUtil.clear();
 	}
