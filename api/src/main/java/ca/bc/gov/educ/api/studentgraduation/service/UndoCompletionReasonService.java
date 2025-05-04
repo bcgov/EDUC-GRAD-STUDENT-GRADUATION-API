@@ -7,9 +7,9 @@ import ca.bc.gov.educ.api.studentgraduation.model.transformer.UndoCompletionReas
 import ca.bc.gov.educ.api.studentgraduation.repository.StudentUndoCompletionReasonRepository;
 import ca.bc.gov.educ.api.studentgraduation.repository.UndoCompletionReasonRepository;
 import ca.bc.gov.educ.api.studentgraduation.util.GradValidation;
+import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -20,24 +20,19 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class UndoCompletionReasonService {
 
-	@Autowired
 	private UndoCompletionReasonRepository undoCompletionReasonRepository;
 
-	@Autowired
 	private UndoCompletionReasonTransformer undoCompletionReasonTransformer;
 
-	@Autowired
 	private StudentUndoCompletionReasonRepository studentUndoCompletionReasonRepository;
 
-	@Autowired
-	GradValidation validation;	
+	GradValidation validation;
 	
-	@Autowired
     WebClient webClient;
     
-    @Autowired
     RestTemplate restTemplate;
 
 	private static final String CREATED_BY="createdBy";

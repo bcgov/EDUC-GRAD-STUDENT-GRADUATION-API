@@ -131,7 +131,7 @@ public class StudentUndoCompletionReasonServiceTest {
         when(this.gradStudentUndoCompletionReasonsRepository.findById(ungradReasonID)).thenReturn(optional);
 
         try {
-            var result = studentUndoCompletionReasonService.createStudentUndoCompletionReason(studentUndoCompletionReason);
+            studentUndoCompletionReasonService.createStudentUndoCompletionReason(studentUndoCompletionReason);
             Assertions.fail("Business Exception should have been thrown!");
         } catch (GradBusinessRuleException gbre) {
             assertThat(gbre.getMessage()).isNotNull();

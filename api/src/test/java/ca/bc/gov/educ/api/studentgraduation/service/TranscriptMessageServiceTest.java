@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -74,7 +76,7 @@ public class TranscriptMessageServiceTest {
 		obj.setUpdateDate(new Date(System.currentTimeMillis()));
 		gradMessageList.add(obj);
 		Mockito.when(gradMessagingRepository.findAll()).thenReturn(gradMessageList);
-		transcriptMessageService.getAllTranscriptMessageList();
+		assertDoesNotThrow(() -> transcriptMessageService.getAllTranscriptMessageList());
 	}
 	
 	@Test
@@ -110,7 +112,7 @@ public class TranscriptMessageServiceTest {
 		objEntity.setUpdateDate(new Date(System.currentTimeMillis()));
 		Optional<TranscriptMessageEntity> ent = Optional.of(objEntity);
 		Mockito.when(gradMessagingRepository.findByGraduationProgramCodeAndMessageTypeCode(programCode,msgType)).thenReturn(ent);
-		transcriptMessageService.getSpecificTranscriptMessageCode(programCode,msgType);
+		assertDoesNotThrow(() -> transcriptMessageService.getSpecificTranscriptMessageCode(programCode,msgType));
 		
 	}
 	
@@ -119,7 +121,6 @@ public class TranscriptMessageServiceTest {
 		String programCode = "2018-FN";
 		String msgType = "GRADUATED";
 		Mockito.when(gradMessagingRepository.findByGraduationProgramCodeAndMessageTypeCode(programCode,msgType)).thenReturn(Optional.empty());
-		transcriptMessageService.getSpecificTranscriptMessageCode(programCode,msgType);
-		
+		assertDoesNotThrow(() -> transcriptMessageService.getSpecificTranscriptMessageCode(programCode,msgType));
 	}
 }
