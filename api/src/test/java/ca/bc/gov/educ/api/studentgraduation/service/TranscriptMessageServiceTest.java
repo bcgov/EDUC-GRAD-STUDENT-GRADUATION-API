@@ -9,10 +9,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -39,7 +41,10 @@ public class TranscriptMessageServiceTest {
 
 	@Autowired
 	GradValidation validation;
-	
+
+	@MockBean
+	@Qualifier("studentGraduationApiClient")
+	WebClient studentGraduationApiClient;
 	
 	@Test
 	public void testGetAllMessagingCodeList() {

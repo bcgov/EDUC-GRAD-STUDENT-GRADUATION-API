@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
@@ -22,6 +23,7 @@ import ca.bc.gov.educ.api.studentgraduation.model.dto.UndoCompletionReason;
 import ca.bc.gov.educ.api.studentgraduation.model.entity.StudentUndoCompletionReasonEntity;
 import ca.bc.gov.educ.api.studentgraduation.repository.StudentUndoCompletionReasonRepository;
 import ca.bc.gov.educ.api.studentgraduation.util.GradBusinessRuleException;
+import org.springframework.web.reactive.function.client.WebClient;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -37,6 +39,9 @@ public class StudentUndoCompletionReasonServiceTest {
     @MockBean
     private StudentUndoCompletionReasonRepository gradStudentUndoCompletionReasonsRepository;
 
+    @MockBean
+    @Qualifier("studentGraduationApiClient")
+    WebClient studentGraduationApiClient;
 
     @Test
     public void testGetAllStudentUndoCompletionReasonsList() {
@@ -131,7 +136,7 @@ public class StudentUndoCompletionReasonServiceTest {
         when(this.gradStudentUndoCompletionReasonsRepository.findById(ungradReasonID)).thenReturn(optional);
 
         try {
-            var result = studentUndoCompletionReasonService.createStudentUndoCompletionReason(studentUndoCompletionReason);
+            studentUndoCompletionReasonService.createStudentUndoCompletionReason(studentUndoCompletionReason);
             Assertions.fail("Business Exception should have been thrown!");
         } catch (GradBusinessRuleException gbre) {
             assertThat(gbre.getMessage()).isNotNull();

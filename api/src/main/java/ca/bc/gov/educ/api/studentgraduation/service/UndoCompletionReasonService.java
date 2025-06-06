@@ -11,8 +11,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.reactive.function.client.WebClient;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -34,12 +32,6 @@ public class UndoCompletionReasonService {
 	@Autowired
 	GradValidation validation;	
 	
-	@Autowired
-    WebClient webClient;
-    
-    @Autowired
-    RestTemplate restTemplate;
-
 	private static final String CREATED_BY="createdBy";
 	private static final String CREATED_TIMESTAMP="createdTimestamp";
 

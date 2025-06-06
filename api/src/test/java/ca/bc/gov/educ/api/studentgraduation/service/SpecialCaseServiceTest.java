@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
@@ -17,6 +18,7 @@ import ca.bc.gov.educ.api.studentgraduation.model.dto.SpecialCase;
 import ca.bc.gov.educ.api.studentgraduation.model.entity.SpecialCaseCodeEntity;
 import ca.bc.gov.educ.api.studentgraduation.repository.SpecialCaseRepository;
 import ca.bc.gov.educ.api.studentgraduation.util.GradValidation;
+import org.springframework.web.reactive.function.client.WebClient;
 
 
 @RunWith(SpringRunner.class)
@@ -32,6 +34,10 @@ public class SpecialCaseServiceTest {
 	
 	@Autowired
 	GradValidation validation;
+
+	@MockBean
+	@Qualifier("studentGraduationApiClient")
+	WebClient studentGraduationApiClient;
 		
 	@Test
 	public void testGetAllSpecialCaseList() {

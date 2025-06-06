@@ -2,8 +2,6 @@ package ca.bc.gov.educ.api.studentgraduation.controller;
 
 import ca.bc.gov.educ.api.studentgraduation.model.dto.*;
 import ca.bc.gov.educ.api.studentgraduation.service.AlgorithmRuleService;
-import ca.bc.gov.educ.api.studentgraduation.service.LetterGradeService;
-import ca.bc.gov.educ.api.studentgraduation.service.SpecialCaseService;
 import ca.bc.gov.educ.api.studentgraduation.util.GradValidation;
 import ca.bc.gov.educ.api.studentgraduation.util.MessageHelper;
 import ca.bc.gov.educ.api.studentgraduation.util.ResponseHelper;
@@ -20,7 +18,7 @@ import java.util.UUID;
 
 
 @ExtendWith(MockitoExtension.class)
-public class AlgorithmRuleControllerTest {
+class AlgorithmRuleControllerTest {
 
 	@Mock
 	private AlgorithmRuleService algorithmRuleService;
@@ -38,8 +36,7 @@ public class AlgorithmRuleControllerTest {
 	MessageHelper messagesHelper;
 	
 	@Test
-	public void testGetAlgorithmRulesList() {
-		List<LetterGrade> gradList = new ArrayList<>();
+	void testGetAlgorithmRulesList() {
 		ProgramAlgorithmRule obj = new ProgramAlgorithmRule();
 		AlgorithmRuleCode code = new AlgorithmRuleCode();
 		code.setAlgoRuleCode("A");
@@ -51,8 +48,7 @@ public class AlgorithmRuleControllerTest {
 	}
 
 	@Test
-	public void testGetAllAlgorithmRulesList() {
-		List<LetterGrade> gradList = new ArrayList<>();
+	void testGetAllAlgorithmRulesList() {
 		ProgramAlgorithmRule obj = new ProgramAlgorithmRule();
 		AlgorithmRuleCode code = new AlgorithmRuleCode();
 		code.setAlgoRuleCode("A");
@@ -64,7 +60,7 @@ public class AlgorithmRuleControllerTest {
 	}
 
 	@Test
-	public void testGetAllAlgorithmData() {
+	void testGetAllAlgorithmData() {
 		StudentGraduationAlgorithmData data = new StudentGraduationAlgorithmData();
 		data.setLetterGrade(new ArrayList<>());
 		data.setSpecialCase(new ArrayList<>());
@@ -74,12 +70,12 @@ public class AlgorithmRuleControllerTest {
 	}
 
 	@Test
-	public void testGetAllAlgorithmDataList() {
+	void testGetAllAlgorithmDataList() {
 		StudentGraduationAlgorithmData data = new StudentGraduationAlgorithmData();
 		data.setLetterGrade(new ArrayList<>());
 		data.setSpecialCase(new ArrayList<>());
-		Mockito.when(algorithmRuleService.getAllAlgorithmDataList("accessToken")).thenReturn(List.of(data));
-		algorithmRuleController.getAllAlgorithmDataList("accessToken");
-		Mockito.verify(algorithmRuleService).getAllAlgorithmDataList("accessToken");
+		Mockito.when(algorithmRuleService.getAllAlgorithmDataList()).thenReturn(List.of(data));
+		algorithmRuleController.getAllAlgorithmDataList();
+		Mockito.verify(algorithmRuleService).getAllAlgorithmDataList();
 	}
 }

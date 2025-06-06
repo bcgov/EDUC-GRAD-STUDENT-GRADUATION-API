@@ -22,7 +22,7 @@ import java.util.Map;
 public final class LogHelper {
   private static final ObjectMapper mapper = new ObjectMapper();
   private static final String EXCEPTION = "Exception ";
-  JsonTransformer jsonTransformer;
+  static JsonTransformer jsonTransformer;
 
     @Autowired
     public LogHelper(JsonTransformer jsonTransformer) {
@@ -58,7 +58,7 @@ public final class LogHelper {
     }
   }
 
-  public void logClientHttpReqResponseDetails(@NonNull final HttpMethod method, final String url, final int responseCode, final List<String> correlationID,
+  public static void logClientHttpReqResponseDetails(@NonNull final HttpMethod method, final String url, final int responseCode, final List<String> correlationID,
                                               final List<String> requestSource, final boolean logging) {
     if (!logging) return;
     try {

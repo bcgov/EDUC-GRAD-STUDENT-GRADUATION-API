@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
@@ -23,9 +24,9 @@ import ca.bc.gov.educ.api.studentgraduation.repository.TranscriptMessageReposito
 import ca.bc.gov.educ.api.studentgraduation.repository.UndoCompletionReasonRepository;
 import ca.bc.gov.educ.api.studentgraduation.util.GradBusinessRuleException;
 import ca.bc.gov.educ.api.studentgraduation.util.GradValidation;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -46,8 +47,11 @@ public class UndoCompletionReasonServiceTest {
 
 	@Autowired
 	GradValidation validation;
-	
-	
+
+	@MockBean
+	@Qualifier("studentGraduationApiClient")
+	WebClient studentGraduationApiClient;
+
 	@Test
 	public void testGetAllUndoCompletionReasonCodeList() {
 		List<UndoCompletionReasonEntity> gradUndoCompletionReasonList = new ArrayList<>();

@@ -62,6 +62,8 @@ objects:
                     name: educ-grad-student-graduation-api-config-map
                 - secretRef:
                     name: api-student-graduation-db-secret
+                - secretRef:
+                    name: grad-student-graduation-api-client-secret
               resources:
                 requests:
                   cpu: "${MIN_CPU}"
