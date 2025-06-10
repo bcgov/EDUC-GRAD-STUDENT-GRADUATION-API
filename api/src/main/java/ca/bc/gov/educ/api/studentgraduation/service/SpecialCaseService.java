@@ -13,7 +13,6 @@ import ca.bc.gov.educ.api.studentgraduation.model.dto.SpecialCase;
 import ca.bc.gov.educ.api.studentgraduation.model.entity.SpecialCaseCodeEntity;
 import ca.bc.gov.educ.api.studentgraduation.model.transformer.SpecialCaseTransformer;
 import ca.bc.gov.educ.api.studentgraduation.repository.SpecialCaseRepository;
-import ca.bc.gov.educ.api.studentgraduation.util.GradValidation;
 
 @Service
 public class SpecialCaseService {
@@ -24,10 +23,6 @@ public class SpecialCaseService {
     @Autowired
     private SpecialCaseRepository specialCaseRepository; 
     
-    @Autowired
-	GradValidation validation;
-    
-
     @SuppressWarnings("unused")
 	private static Logger logger = LoggerFactory.getLogger(SpecialCaseService.class);
 

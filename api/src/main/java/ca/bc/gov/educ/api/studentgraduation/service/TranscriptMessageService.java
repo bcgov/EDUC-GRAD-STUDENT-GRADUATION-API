@@ -5,13 +5,10 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.client.WebClient;
-
 import ca.bc.gov.educ.api.studentgraduation.model.dto.TranscriptMessage;
 import ca.bc.gov.educ.api.studentgraduation.model.entity.TranscriptMessageEntity;
 import ca.bc.gov.educ.api.studentgraduation.model.transformer.TranscriptMessageTransformer;
 import ca.bc.gov.educ.api.studentgraduation.repository.TranscriptMessageRepository;
-import ca.bc.gov.educ.api.studentgraduation.util.GradValidation;
 @Service
 public class TranscriptMessageService {
 
@@ -21,12 +18,6 @@ public class TranscriptMessageService {
 	@Autowired
 	private TranscriptMessageTransformer transcriptMessageTransformer;
 
-	@Autowired
-	GradValidation validation;
-	
-	@Autowired
-    WebClient webClient;
-    
 	public List<TranscriptMessage> getAllTranscriptMessageList() {
 		return transcriptMessageTransformer.transformToDTO(transcriptMessageRepository.findAll());
 	}

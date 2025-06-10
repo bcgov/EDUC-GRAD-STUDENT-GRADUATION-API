@@ -1,76 +1,67 @@
 package ca.bc.gov.educ.api.studentgraduation.service;
 
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
 import ca.bc.gov.educ.api.studentgraduation.model.dto.*;
 import ca.bc.gov.educ.api.studentgraduation.model.transformer.TranscriptMessageTransformer;
 import ca.bc.gov.educ.api.studentgraduation.repository.TranscriptMessageRepository;
 import ca.bc.gov.educ.api.studentgraduation.util.EducGradStudentGraduationApiConstants;
-import ca.bc.gov.educ.api.studentgraduation.util.ThreadLocalStateUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
-
 import ca.bc.gov.educ.api.studentgraduation.model.transformer.LetterGradeTransformer;
 import ca.bc.gov.educ.api.studentgraduation.model.transformer.ProgramAlgorithmRuleTransformer;
 import ca.bc.gov.educ.api.studentgraduation.model.transformer.SpecialCaseTransformer;
 import ca.bc.gov.educ.api.studentgraduation.repository.LetterGradeRepository;
 import ca.bc.gov.educ.api.studentgraduation.repository.ProgramAlgorithmRuleRepository;
 import ca.bc.gov.educ.api.studentgraduation.repository.SpecialCaseRepository;
-import ca.bc.gov.educ.api.studentgraduation.util.GradValidation;
 
-
+@Slf4j
 @Service
 public class AlgorithmRuleService {
 
-    @Autowired
-    private ProgramAlgorithmRuleTransformer programAlgorithmRuleTransformer;
+    private final ProgramAlgorithmRuleTransformer programAlgorithmRuleTransformer;
+    private final ProgramAlgorithmRuleRepository programAlgorithmRuleRepository;
+    private final LetterGradeTransformer letterGradeTransformer;
+    private final LetterGradeRepository letterGradeRepository;
+    private final SpecialCaseTransformer specialCaseTransformer;
+    private final SpecialCaseRepository specialCaseRepository;
+	private final TranscriptMessageTransformer transcriptMessageTransformer;
+	private final TranscriptMessageRepository transcriptMessageRepository;
+    WebClient studentGraduationApiClient;
+	private final RESTService restService;
     
-    @Autowired
-    private ProgramAlgorithmRuleRepository programAlgorithmRuleRepository;
-    
-    @Autowired
-    private LetterGradeTransformer letterGradeTransformer;
-    
-    @Autowired
-    private LetterGradeRepository letterGradeRepository; 
-    
-    @Autowired
-    private SpecialCaseTransformer specialCaseTransformer;
-    
-    @Autowired
-    private SpecialCaseRepository specialCaseRepository;
-
-	@Autowired
-	private TranscriptMessageTransformer transcriptMessageTransformer;
-
-	@Autowired
-	private TranscriptMessageRepository transcriptMessageRepository;
-
-	@Autowired
-    WebClient webClient;
-    
-    @Autowired
-    RestTemplate restTemplate;
-    
-    @Autowired
-	GradValidation validation;
-
-	@Autowired
 	EducGradStudentGraduationApiConstants constants;
 
-    @SuppressWarnings("unused")
-	private static Logger logger = LoggerFactory.getLogger(AlgorithmRuleService.class);
+	@Autowired
+	public AlgorithmRuleService(ProgramAlgorithmRuleTransformer programAlgorithmRuleTransformer,
+								ProgramAlgorithmRuleRepository programAlgorithmRuleRepository,
+								LetterGradeTransformer letterGradeTransformer,
+								LetterGradeRepository letterGradeRepository,
+								SpecialCaseTransformer specialCaseTransformer,
+								SpecialCaseRepository specialCaseRepository,
+								TranscriptMessageTransformer transcriptMessageTransformer,
+								TranscriptMessageRepository transcriptMessageRepository,
+								@Qualifier("studentGraduationApiClient") WebClient studentGraduationApiClient,
+								RESTService restService, EducGradStudentGraduationApiConstants constants) {
+		this.programAlgorithmRuleTransformer = programAlgorithmRuleTransformer;
+		this.programAlgorithmRuleRepository = programAlgorithmRuleRepository;
+		this.letterGradeTransformer = letterGradeTransformer;
+		this.letterGradeRepository = letterGradeRepository;
+		this.specialCaseTransformer = specialCaseTransformer;
+		this.specialCaseRepository = specialCaseRepository;
+		this.transcriptMessageTransformer = transcriptMessageTransformer;
+		this.transcriptMessageRepository = transcriptMessageRepository;
+		this.studentGraduationApiClient = studentGraduationApiClient;
+		this.restService = restService;
+		this.constants = constants;
+	}
 
-    public List<ProgramAlgorithmRule> getAlgorithmRulesList(String programCode) {
+	public List<ProgramAlgorithmRule> getAlgorithmRulesList(String programCode) {
 		List<ProgramAlgorithmRule> responseList = programAlgorithmRuleTransformer.transformToDTO(programAlgorithmRuleRepository.getAlgorithmRulesByProgramCode(programCode));
 		responseList.sort(Comparator.comparing(ProgramAlgorithmRule::getSortOrder));
 		return responseList;
@@ -103,14 +94,12 @@ public class AlgorithmRuleService {
 		return data;
 	}
 
-	public List<StudentGraduationAlgorithmData> getAllAlgorithmDataList(String accessToken) {
+	public List<StudentGraduationAlgorithmData> getAllAlgorithmDataList() {
 		List<StudentGraduationAlgorithmData> sList = new ArrayList<>();
-		List<GraduationProgramCode> pList = webClient.get()
-				.uri(constants.getProgramList())
-				.headers(h -> h.setBearerAuth(accessToken))
-				.retrieve()
-				.bodyToMono(new ParameterizedTypeReference<List<GraduationProgramCode>>(){})
-				.block();
+		List<GraduationProgramCode> pList = restService.get(
+				String.format(constants.getProgramList()),
+				new ParameterizedTypeReference<List<GraduationProgramCode>>() {
+				}, studentGraduationApiClient);
 		if(pList != null && !pList.isEmpty())
 			pList.forEach(p-> sList.add(getAllAlgorithmData(p.getProgramCode())));
 		return sList;

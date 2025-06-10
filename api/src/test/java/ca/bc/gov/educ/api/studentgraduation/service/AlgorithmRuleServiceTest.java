@@ -22,6 +22,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.core.ParameterizedTypeReference;
@@ -61,7 +62,11 @@ public class AlgorithmRuleServiceTest {
 	GradValidation validation;
 
     @MockBean
-    WebClient webClient;
+    @Qualifier("studentGraduationApiClient")
+    WebClient studentGraduationApiClient;
+
+    @Autowired
+    RESTService restService;
 
     @Autowired
     EducGradStudentGraduationApiConstants constants;
@@ -90,16 +95,18 @@ public class AlgorithmRuleServiceTest {
 
     @Test
     public void testGetAllAlgorithmDataList() throws Exception {
-        String accessToken = "accessToken";
         GraduationProgramCode code = new GraduationProgramCode();
         code.setProgramCode("2018-EN");
-        when(this.webClient.get()).thenReturn(this.requestHeadersUriMock);
-        when(this.requestHeadersUriMock.uri(constants.getProgramList())).thenReturn(this.requestHeadersMock);
+        when(this.studentGraduationApiClient.get()).thenReturn(this.requestHeadersUriMock);
+        when(this.requestHeadersUriMock.uri(any(String.class))).thenReturn(this.requestHeadersMock);
         when(this.requestHeadersMock.headers(any(Consumer.class))).thenReturn(this.requestHeadersMock);
         when(this.requestHeadersMock.retrieve()).thenReturn(this.responseMock);
-        when(this.responseMock.bodyToMono(new ParameterizedTypeReference<List<GraduationProgramCode>>(){})).thenReturn(Mono.just(List.of(code)));
+        when(this.responseMock.onStatus(any(), any())).thenReturn(this.responseMock);
+        when(this.responseMock.bodyToMono(new ParameterizedTypeReference<List<GraduationProgramCode>>(){}))
+                .thenReturn(Mono.just(List.of(code)));
 
-        List<StudentGraduationAlgorithmData> res = algorithmRuleService.getAllAlgorithmDataList(accessToken);
+
+        List<StudentGraduationAlgorithmData> res = algorithmRuleService.getAllAlgorithmDataList();
         assertNotNull(res);
         assertThat(res).hasSize(1);
     }

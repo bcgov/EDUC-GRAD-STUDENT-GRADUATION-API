@@ -65,4 +65,7 @@ public class EducGradStudentGraduationApiConstants {
 
     @Value("${endpoint.grad-program-api.get-all-program.url}")
     private String programList;
+
+    @Value("${endpoint.keycloak.token-uri}")
+    private String tokenUrl;
 }
